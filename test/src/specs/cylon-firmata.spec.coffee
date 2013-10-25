@@ -1,6 +1,6 @@
 'use strict';
 
-cylonFirmata = source("cylon-firmata")
+firmata = source("cylon-firmata")
 
 describe "basic tests", ->
   it "standard async test", (done) ->
@@ -29,8 +29,8 @@ describe "basic tests", ->
     # hard equal
     data[0].should.be.equal obj
 
-  # Now on to a `real` test
-  it "cylon-firmata should be awesome", ->
-    cylonFirmata.should.have.keys 'awesome'
-    cylonFirmata.awesome.should.be.a 'function'
-    cylonFirmata.awesome().should.be.equal 'awesome'
+  it "should be able to register", ->
+    firmata.register.should.be.a 'function'
+
+  it "should be able to create adaptor", ->
+    firmata.adaptor.should.be.a 'function'
