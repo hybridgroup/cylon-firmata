@@ -8,19 +8,22 @@
 
 'use strict';
 
+GPIO = require("cylon-gpio")
+
 module.exports =
   adaptor: (args...) ->
     new Adaptor.Firmata(args...)
 
   driver: (args...) ->
-    new Driver.Led(args...)
+    GPIO.driver(args...)
 
   register: (robot) ->
     Logger.debug "Registering Firmata adaptor for #{robot.name}"
     robot.registerAdaptor 'cylon-firmata', 'firmata'
 
-    Logger.debug "Registering Sphero driver for #{robot.name}"
-    robot.registerDriver 'cylon-firmata', 'led'
+    GPIO.register robot
+    #Logger.debug "Registering Sphero driver for #{robot.name}"
+    #robot.registerDriver 'cylon-firmata', 'led'
 
 LibFirmata = require('firmata')
 
@@ -59,32 +62,3 @@ Adaptor =
         return if typeof @self[command] is 'function'
         @self[command] = (args...) -> @board[command](args...)
 
-Driver =
-  Led: class Led
-    constructor: (opts) ->
-      @self = this
-      @device = opts.device
-      @connection = @device.connection
-      @pin = @device.pin
-      @isOn = false
-
-    commands: ->
-      ['turnOn', 'turnOff', 'toggle']
-
-    start: (callback) ->
-      Logger.debug "LED on pin #{@pin} started"
-      (callback)(null)
-
-    turnOn: ->
-      @isOn = true
-      @connection.digitalWrite(@pin, 1)
-
-    turnOff: ->
-      @isOn = false
-      @connection.digitalWrite(@pin, 0)
-
-    toggle: ->
-      if @isOn
-        @turnOff()
-      else
-        @turnOn()
