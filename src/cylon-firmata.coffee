@@ -39,7 +39,6 @@ Adaptor =
       Commands
 
     connect: (callback) ->
-      #cb = callback
       Logger.info "Connecting to board '#{@name}'..."
       @board = new LibFirmata.Board @connection.port.toString(), =>
         @connection.emit 'connect'
