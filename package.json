@@ -1,7 +1,7 @@
 {
   "name": "cylon-firmata",
   "version": "0.0.0",
-  "main": "lib/cylon-firmata.js",
+  "main": "dist/cylon-firmata.js",
   "description": "Cylon module for Arduino and other microcontrollers using the Firmata protocol",
   "homepage": "http://cylonjs.com",
   "bugs": "https://github.com/hybridgroup/cylon-firmata/issues",

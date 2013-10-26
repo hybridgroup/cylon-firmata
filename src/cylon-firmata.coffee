@@ -22,10 +22,10 @@ module.exports =
     Logger.info "Registering Sphero driver for #{robot.name}"
     robot.registerDriver 'cylon-firmata', 'led'
 
-Firmata = require('firmata')
+LibFirmata = require('firmata')
 
-Commands = ['pins', 'pinMode', 'digitalRead', 'digitalWrite', 'analogRead', 'analogWrite',
-            'servoWrite', 'sendI2CConfig', 'sendI2CWriteRequest', 'sendI2CReadRequest']
+Commands = ['pins', 'pinMode', 'digitalRead', 'digitalWrite'] #, 'analogRead', 'analogWrite',
+            #'servoWrite', 'sendI2CConfig', 'sendI2CWriteRequest', 'sendI2CReadRequest']
 
 Adaptor =
   Firmata: class Firmata
@@ -33,19 +33,27 @@ Adaptor =
       @self = this
       @connection = opts.connection
       @name = opts.name
+      @board = ""
 
-    connect: (connection) ->
-      @connection = connection
+    commands: ->
+      Commands
+
+    connect: (callback) ->
+      #cb = callback
       Logger.info "Connecting to board '#{@name}'..."
-      @board = Firmata.board(@connection.port.toString()) ->
+      @board = new LibFirmata.Board @connection.port.toString(), =>
         @connection.emit 'connect'
+        (callback)(null)
 
       @setupCommands()
-      @self
 
     disconnect: ->
       Logger.info "Disconnecting from board '#{@name}'..."
       @board.close
+
+    digitalWrite: (pin, value) ->
+      @board.pinMode pin, @board.MODES.OUTPUT
+      @board.digitalWrite pin, value
 
     setupCommands: ->
       for command in Commands
@@ -58,23 +66,15 @@ Driver =
       @self = this
       @device = opts.device
       @connection = @device.connection
-      @pin = opts.pin
+      @pin = @device.pin
       @isOn = false
-      #@setupCommands()
 
-    start: ->
-      Logger.info "started"
+    commands: ->
+      ['turnOn', 'turnOff', 'toggle']
 
-      # @connection.on 'message', (data) =>
-      #   @device.emit 'message', @self, data
-
-      # @connection.on 'notification', (data) =>
-      #   @device.emit 'notification', @self, data
-
-    # setupCommands: ->
-    #   for command in Commands
-    #     return if typeof @self[command] is 'function'
-    #     @self[command] = (args...) -> @connection[command](args...)
+    start: (callback) ->
+      Logger.info "LED on pin #{@pin} started"
+      (callback)(null)
 
     turnOn: ->
       @isOn = true
@@ -86,6 +86,6 @@ Driver =
 
     toggle: ->
       if @isOn
-        turnOff()
+        @turnOff()
       else
-        turnOn()
+        @turnOn()
