@@ -16,10 +16,10 @@ module.exports =
     new Driver.Led(args...)
 
   register: (robot) ->
-    Logger.info "Registering Firmata adaptor for #{robot.name}"
+    Logger.debug "Registering Firmata adaptor for #{robot.name}"
     robot.registerAdaptor 'cylon-firmata', 'firmata'
 
-    Logger.info "Registering Sphero driver for #{robot.name}"
+    Logger.debug "Registering Sphero driver for #{robot.name}"
     robot.registerDriver 'cylon-firmata', 'led'
 
 LibFirmata = require('firmata')
@@ -39,7 +39,7 @@ Adaptor =
       Commands
 
     connect: (callback) ->
-      Logger.info "Connecting to board '#{@name}'..."
+      Logger.debug "Connecting to board '#{@name}'..."
       @board = new LibFirmata.Board @connection.port.toString(), =>
         @connection.emit 'connect'
         (callback)(null)
@@ -47,7 +47,7 @@ Adaptor =
       @setupCommands()
 
     disconnect: ->
-      Logger.info "Disconnecting from board '#{@name}'..."
+      Logger.debug "Disconnecting from board '#{@name}'..."
       @board.close
 
     digitalWrite: (pin, value) ->
@@ -72,7 +72,7 @@ Driver =
       ['turnOn', 'turnOff', 'toggle']
 
     start: (callback) ->
-      Logger.info "LED on pin #{@pin} started"
+      Logger.debug "LED on pin #{@pin} started"
       (callback)(null)
 
     turnOn: ->

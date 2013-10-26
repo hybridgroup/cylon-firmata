@@ -32,9 +32,9 @@
       })(Driver.Led, args, function(){});
     },
     register: function(robot) {
-      Logger.info("Registering Firmata adaptor for " + robot.name);
+      Logger.debug("Registering Firmata adaptor for " + robot.name);
       robot.registerAdaptor('cylon-firmata', 'firmata');
-      Logger.info("Registering Sphero driver for " + robot.name);
+      Logger.debug("Registering Sphero driver for " + robot.name);
       return robot.registerDriver('cylon-firmata', 'led');
     }
   };
@@ -58,7 +58,7 @@
 
       Firmata.prototype.connect = function(callback) {
         var _this = this;
-        Logger.info("Connecting to board '" + this.name + "'...");
+        Logger.debug("Connecting to board '" + this.name + "'...");
         this.board = new LibFirmata.Board(this.connection.port.toString(), function() {
           _this.connection.emit('connect');
           return callback(null);
@@ -67,7 +67,7 @@
       };
 
       Firmata.prototype.disconnect = function() {
-        Logger.info("Disconnecting from board '" + this.name + "'...");
+        Logger.debug("Disconnecting from board '" + this.name + "'...");
         return this.board.close;
       };
 
@@ -111,7 +111,7 @@
       };
 
       Led.prototype.start = function(callback) {
-        Logger.info("LED on pin " + this.pin + " started");
+        Logger.debug("LED on pin " + this.pin + " started");
         return callback(null);
       };
 
