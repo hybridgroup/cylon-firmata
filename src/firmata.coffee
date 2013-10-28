@@ -35,13 +35,21 @@ namespace "Cylon.Adaptor", ->
       Logger.debug "Disconnecting from board '#{@name}'..."
       @board.close
 
-    digitalRead: (pin) ->
+    digitalRead: (pin, callback) ->
       @board.pinMode pin, @board.MODES.INPUT
-      @board.digitalRead pin
+      @board.digitalRead pin, callback
 
     digitalWrite: (pin, value) ->
       @board.pinMode pin, @board.MODES.OUTPUT
       @board.digitalWrite pin, value
+
+    analogRead: (pin, callback) ->
+      @board.pinMode pin, @board.MODES.ANALOG
+      @board.analogRead pin, callback
+
+    analogWrite: (pin, value) ->
+      @board.pinMode pin, @board.MODES.ANALOG
+      @board.analogWrite pin, value
 
     setupCommands: ->
       for command in Commands

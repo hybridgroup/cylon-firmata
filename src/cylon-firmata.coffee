@@ -8,7 +8,7 @@
 
 'use strict';
 
-require "firmata"
+require "./firmata"
 GPIO = require "cylon-gpio"
 
 module.exports =

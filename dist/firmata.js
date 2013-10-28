@@ -44,14 +44,24 @@
         return this.board.close;
       };
 
-      Firmata.prototype.digitalRead = function(pin) {
+      Firmata.prototype.digitalRead = function(pin, callback) {
         this.board.pinMode(pin, this.board.MODES.INPUT);
-        return this.board.digitalRead(pin);
+        return this.board.digitalRead(pin, callback);
       };
 
       Firmata.prototype.digitalWrite = function(pin, value) {
         this.board.pinMode(pin, this.board.MODES.OUTPUT);
         return this.board.digitalWrite(pin, value);
+      };
+
+      Firmata.prototype.analogRead = function(pin, callback) {
+        this.board.pinMode(pin, this.board.MODES.ANALOG);
+        return this.board.analogRead(pin, callback);
+      };
+
+      Firmata.prototype.analogWrite = function(pin, value) {
+        this.board.pinMode(pin, this.board.MODES.ANALOG);
+        return this.board.analogWrite(pin, value);
       };
 
       Firmata.prototype.setupCommands = function() {

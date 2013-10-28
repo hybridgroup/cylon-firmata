@@ -12,7 +12,7 @@
   var GPIO,
     __slice = [].slice;
 
-  require("firmata");
+  require("./firmata");
 
   GPIO = require("cylon-gpio");
 
