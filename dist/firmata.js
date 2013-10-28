@@ -65,16 +65,17 @@
       };
 
       Firmata.prototype.setupCommands = function() {
-        var command, _i, _len;
-        for (_i = 0, _len = Commands.length; _i < _len; _i++) {
-          command = Commands[_i];
+        var command, _i, _len, _ref;
+        _ref = this.commands();
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          command = _ref[_i];
           if (typeof this.self[command] === 'function') {
             return;
           }
           this.self[command] = function() {
-            var args, _ref;
+            var args, _ref1;
             args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
-            return (_ref = this.board)[command].apply(_ref, args);
+            return (_ref1 = this.board)[command].apply(_ref1, args);
           };
         }
       };

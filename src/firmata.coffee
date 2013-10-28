@@ -52,6 +52,6 @@ namespace "Cylon.Adaptor", ->
       @board.analogWrite pin, value
 
     setupCommands: ->
-      for command in Commands
+      for command in @commands()
         return if typeof @self[command] is 'function'
         @self[command] = (args...) -> @board[command](args...)
