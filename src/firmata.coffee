@@ -44,12 +44,12 @@ namespace "Cylon.Adaptor", ->
       @board.digitalWrite pin, value
 
     analogRead: (pin, callback) ->
-      @board.pinMode pin, @board.MODES.ANALOG
-      @board.analogRead pin, callback
+      #@board.pinMode @board.analogPins[pin], @board.MODES.ANALOG
+      @board.analogRead(pin, callback)
 
     analogWrite: (pin, value) ->
       @board.pinMode pin, @board.MODES.ANALOG
-      @board.analogWrite pin, value
+      @board.analogWrite @board.pins[@board.analogPins[pin]], value
 
     setupCommands: ->
       for command in @commands()
