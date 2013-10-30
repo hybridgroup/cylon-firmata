@@ -10,16 +10,19 @@
 (function() {
   'use strict';
   var LibFirmata, namespace,
-    __slice = [].slice;
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   LibFirmata = require('firmata');
 
   namespace = require('node-namespace');
 
   namespace("Cylon.Adaptor", function() {
-    return this.Firmata = (function() {
+    return this.Firmata = (function(_super) {
+      __extends(Firmata, _super);
+
       function Firmata(opts) {
-        this.self = this;
+        Firmata.__super__.constructor.apply(this, arguments);
         this.connection = opts.connection;
         this.name = opts.name;
         this.board = "";
@@ -36,7 +39,7 @@
           _this.connection.emit('connect');
           return callback(null);
         });
-        return this.setupCommands();
+        return this.proxyMethods(this.commands, this.board, Firmata);
       };
 
       Firmata.prototype.disconnect = function() {
@@ -63,25 +66,9 @@
         return this.board.analogWrite(this.board.analogPins[pin], value);
       };
 
-      Firmata.prototype.setupCommands = function() {
-        var command, _i, _len, _ref;
-        _ref = this.commands();
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          command = _ref[_i];
-          if (typeof this.self[command] === 'function') {
-            return;
-          }
-          this.self[command] = function() {
-            var args, _ref1;
-            args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
-            return (_ref1 = this.board)[command].apply(_ref1, args);
-          };
-        }
-      };
-
       return Firmata;
 
-    })();
+    })(Cylon.Basestar);
   });
 
 }).call(this);

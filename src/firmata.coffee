@@ -12,9 +12,9 @@ LibFirmata = require('firmata')
 namespace = require 'node-namespace'
 
 namespace "Cylon.Adaptor", ->
-  class @Firmata
+  class @Firmata extends Cylon.Basestar
     constructor: (opts) ->
-      @self = this
+      super
       @connection = opts.connection
       @name = opts.name
       @board = ""
@@ -29,7 +29,7 @@ namespace "Cylon.Adaptor", ->
         @connection.emit 'connect'
         (callback)(null)
 
-      @setupCommands()
+      @proxyMethods @commands, @board, Firmata
 
     disconnect: ->
       Logger.debug "Disconnecting from board '#{@name}'..."
@@ -49,8 +49,3 @@ namespace "Cylon.Adaptor", ->
     analogWrite: (pin, value) ->
       @board.pinMode pin, @board.MODES.ANALOG
       @board.analogWrite @board.analogPins[pin], value
-
-    setupCommands: ->
-      for command in @commands()
-        return if typeof @self[command] is 'function'
-        @self[command] = (args...) -> @board[command](args...)

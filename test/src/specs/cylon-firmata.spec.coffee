@@ -1,5 +1,11 @@
 'use strict';
 
+# Needed so that tests don't implode
+namespace = require 'node-namespace'
+namespace 'Cylon', ->
+  class @Basestar
+    constructor: ->
+
 firmata = source("cylon-firmata")
 
 describe "basic tests", ->
