@@ -29,7 +29,7 @@
       }
 
       Firmata.prototype.commands = function() {
-        return ['pins', 'pinMode', 'digitalRead', 'digitalWrite', 'analogRead', 'analogWrite'];
+        return ['pins', 'pinMode', 'digitalRead', 'digitalWrite', 'analogRead', 'analogWrite', 'pwmWrite'];
       };
 
       Firmata.prototype.connect = function(callback) {
@@ -62,8 +62,13 @@
       };
 
       Firmata.prototype.analogWrite = function(pin, value) {
-        this.board.pinMode(pin, this.board.MODES.ANALOG);
+        this.board.pinMode(this.board.analogPins[pin], this.board.MODES.ANALOG);
         return this.board.analogWrite(this.board.analogPins[pin], value);
+      };
+
+      Firmata.prototype.pwmWrite = function(pin, value) {
+        this.board.pinMode(pin, this.board.MODES.PWM);
+        return this.board.analogWrite(pin, value);
       };
 
       return Firmata;

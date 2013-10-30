@@ -20,7 +20,7 @@ namespace "Cylon.Adaptor", ->
       @board = ""
 
     commands: ->
-      ['pins', 'pinMode', 'digitalRead', 'digitalWrite', 'analogRead', 'analogWrite']
+      ['pins', 'pinMode', 'digitalRead', 'digitalWrite', 'analogRead', 'analogWrite', 'pwmWrite']
       #'servoWrite', 'sendI2CConfig', 'sendI2CWriteRequest', 'sendI2CReadRequest']
 
     connect: (callback) ->
@@ -47,5 +47,9 @@ namespace "Cylon.Adaptor", ->
       @board.analogRead(pin, callback)
 
     analogWrite: (pin, value) ->
-      @board.pinMode pin, @board.MODES.ANALOG
+      @board.pinMode @board.analogPins[pin], @board.MODES.ANALOG
       @board.analogWrite @board.analogPins[pin], value
+
+    pwmWrite: (pin, value) ->
+      @board.pinMode pin, @board.MODES.PWM
+      @board.analogWrite pin, value
