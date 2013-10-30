@@ -60,7 +60,7 @@
 
       Firmata.prototype.analogWrite = function(pin, value) {
         this.board.pinMode(pin, this.board.MODES.ANALOG);
-        return this.board.analogWrite(this.board.pins[this.board.analogPins[pin]], value);
+        return this.board.analogWrite(this.board.analogPins[pin], value);
       };
 
       Firmata.prototype.setupCommands = function() {
