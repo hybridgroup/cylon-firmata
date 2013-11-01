@@ -26,8 +26,8 @@ namespace "Cylon.Adaptor", ->
     connect: (callback) ->
       Logger.debug "Connecting to board '#{@name}'..."
       @board = new LibFirmata.Board @connection.port.toString(), =>
-        @connection.emit 'connect'
         (callback)(null)
+        @connection.emit 'connect'
 
       @proxyMethods @commands, @board, Firmata
 

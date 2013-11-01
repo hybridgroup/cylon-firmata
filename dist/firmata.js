@@ -36,8 +36,8 @@
         var _this = this;
         Logger.debug("Connecting to board '" + this.name + "'...");
         this.board = new LibFirmata.Board(this.connection.port.toString(), function() {
-          _this.connection.emit('connect');
-          return callback(null);
+          callback(null);
+          return _this.connection.emit('connect');
         });
         return this.proxyMethods(this.commands, this.board, Firmata);
       };
