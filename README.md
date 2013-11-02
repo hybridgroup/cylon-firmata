@@ -61,5 +61,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 ## Release History
 Version 0.1.0 - Initial release with support for digital read/write and analog read/write
 
+Version 0.2.0 - Add support for PWM and servo commands, and refactor to use Basestar
+
 ## License
 Copyright (c) 2013 The Hybrid Group. Licensed under the Apache 2.0 license.
