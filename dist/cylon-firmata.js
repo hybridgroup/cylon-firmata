@@ -9,12 +9,14 @@
 
 (function() {
   'use strict';
-  var GPIO,
+  var GPIO, I2C,
     __slice = [].slice;
 
   require("./firmata");
 
   GPIO = require("cylon-gpio");
+
+  I2C = require("cylon-i2c");
 
   module.exports = {
     adaptor: function() {
@@ -29,12 +31,13 @@
     driver: function() {
       var args;
       args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
-      return GPIO.driver.apply(GPIO, args);
+      return GPIO.driver.apply(GPIO, args) || I2C.driver.apply(I2C, args);
     },
     register: function(robot) {
       Logger.debug("Registering Firmata adaptor for " + robot.name);
       robot.registerAdaptor('cylon-firmata', 'firmata');
-      return GPIO.register(robot);
+      GPIO.register(robot);
+      return I2C.register(robot);
     }
   };
 

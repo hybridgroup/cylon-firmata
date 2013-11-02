@@ -20,8 +20,8 @@ namespace "Cylon.Adaptor", ->
       @board = ""
 
     commands: ->
-      ['pins', 'pinMode', 'digitalRead', 'digitalWrite', 'analogRead', 'analogWrite', 'pwmWrite', 'servoWrite']
-      #'sendI2CConfig', 'sendI2CWriteRequest', 'sendI2CReadRequest']
+      ['pins', 'pinMode', 'digitalRead', 'digitalWrite', 'analogRead', 'analogWrite', 'pwmWrite', 'servoWrite',
+       'i2cConfig', 'i2cWrite', 'i2cRead']
 
     connect: (callback) ->
       Logger.debug "Connecting to board '#{@name}'..."
@@ -57,3 +57,12 @@ namespace "Cylon.Adaptor", ->
     servoWrite: (pin, value) ->
       @board.pinMode pin, @board.MODES.SERVO
       @board.analogWrite pin, value
+
+    i2cConfig: (delay) ->
+      @board.sendI2CConfig delay
+
+    i2cWrite: (address, data) ->
+      @board.sendI2CWriteRequest address, data
+
+    i2cRead: (address, length, callback) ->
+      @board.sendI2CReadRequest address, length, callback
