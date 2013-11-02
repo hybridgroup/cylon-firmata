@@ -34,7 +34,7 @@
   "dependencies": {
     "firmata": "~0.2.9",
     "node-namespace": "~1.0.0",
-    "cylon": "~0.2.0",
-    "cylon-gpio": "~0.1.0"
+    "cylon": "~0.3.0",
+    "cylon-gpio": "~0.2.0"
   }
 }
