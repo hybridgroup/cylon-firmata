@@ -26,6 +26,7 @@
         this.connection = opts.connection;
         this.name = opts.name;
         this.board = "";
+        this.myself = this;
       }
 
       Firmata.prototype.commands = function() {
@@ -39,7 +40,7 @@
           callback(null);
           return _this.connection.emit('connect');
         });
-        return this.proxyMethods(this.commands, this.board, Firmata);
+        return this.proxyMethods(this.commands, this.board, this.myself);
       };
 
       Firmata.prototype.disconnect = function() {

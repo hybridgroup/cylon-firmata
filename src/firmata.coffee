@@ -18,6 +18,7 @@ namespace "Cylon.Adaptor", ->
       @connection = opts.connection
       @name = opts.name
       @board = ""
+      @myself = this
 
     commands: ->
       ['pins', 'pinMode', 'digitalRead', 'digitalWrite', 'analogRead', 'analogWrite', 'pwmWrite', 'servoWrite',
@@ -29,7 +30,7 @@ namespace "Cylon.Adaptor", ->
         (callback)(null)
         @connection.emit 'connect'
 
-      @proxyMethods @commands, @board, Firmata
+      @proxyMethods @commands, @board, @myself
 
     disconnect: ->
       Logger.debug "Disconnecting from board '#{@name}'..."
