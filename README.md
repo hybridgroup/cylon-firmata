@@ -63,5 +63,7 @@ Version 0.1.0 - Initial release with support for digital read/write and analog r
 
 Version 0.2.0 - Add support for PWM and servo commands, and refactor to use Basestar
 
+Version 0.3.0 - Add support for i2c, load cylon-i2c driver set
+
 ## License
 Copyright (c) 2013 The Hybrid Group. Licensed under the Apache 2.0 license.
