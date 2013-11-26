@@ -13,7 +13,7 @@ Install the module with: `npm install cylon-firmata`
 
 ## Examples
 
-### Javascript:
+### JavaScript:
 ```javascript
 var Cylon = require('cylon');
 
@@ -30,7 +30,7 @@ Cylon.robot({
 ```
 
 ### CoffeeScript:
-```coffee-script
+```
 Cylon = require('cylon')
 
 # Initialize the robot
@@ -59,13 +59,18 @@ Thank you!
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-Version 0.1.0 - Initial release with support for digital read/write and analog read/write
 
-Version 0.2.0 - Add support for PWM and servo commands, and refactor to use Basestar
+[![NPM](https://nodei.co/npm/cylon-firmata.png?compact=true)](https://nodei.co/npm/cylon-firmata/)
+
+Version 0.5.0 - Updates to Cylon 0.6.0
+
+Version 0.4.0 - Updates to latest cylon core
 
 Version 0.3.0 - Add support for i2c, load cylon-i2c driver set
 
-Version 0.4.0 - Updates to latest cylon core
+Version 0.2.0 - Add support for PWM and servo commands, and refactor to use Basestar
+
+Version 0.1.0 - Initial release with support for digital read/write and analog read/write
 
 ## License
 Copyright (c) 2013 The Hybrid Group. Licensed under the Apache 2.0 license.
