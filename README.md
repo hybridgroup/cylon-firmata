@@ -6,6 +6,8 @@ This module provides an adaptor for microcontrollers such as Arduino that suppor
 
 Want to use Ruby on robots? Check out our sister project Artoo (http://artoo.io)
 
+Want to use the Go programming language to power your robots? Check out our sister project Gobot (http://gobot.io).
+
 [![Build Status](https://secure.travis-ci.org/hybridgroup/cylon-firmata.png?branch=master)](http://travis-ci.org/hybridgroup/cylon-firmata)
 
 ## Getting Started
