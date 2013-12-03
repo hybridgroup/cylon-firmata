@@ -22,6 +22,9 @@
       __extends(Firmata, _super);
 
       function Firmata(opts) {
+        if (opts == null) {
+          opts = {};
+        }
         Firmata.__super__.constructor.apply(this, arguments);
         this.connection = opts.connection;
         this.name = opts.name;
@@ -45,7 +48,7 @@
 
       Firmata.prototype.disconnect = function() {
         Logger.debug("Disconnecting from board '" + this.name + "'...");
-        return this.board.close;
+        return this.board.close();
       };
 
       Firmata.prototype.digitalRead = function(pin, callback) {
@@ -93,5 +96,7 @@
 
     })(Cylon.Basestar);
   });
+
+  module.exports = Cylon.Adaptor.Firmata;
 
 }).call(this);

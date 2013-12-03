@@ -6,14 +6,14 @@
  * Licensed under the Apache 2.0 license.
 ###
 
-'use strict';
+'use strict'
 
 LibFirmata = require('firmata')
 namespace = require 'node-namespace'
 
 namespace "Cylon.Adaptor", ->
   class @Firmata extends Cylon.Basestar
-    constructor: (opts) ->
+    constructor: (opts = {}) ->
       super
       @connection = opts.connection
       @name = opts.name
@@ -21,11 +21,15 @@ namespace "Cylon.Adaptor", ->
       @myself = this
 
     commands: ->
-      ['pins', 'pinMode', 'digitalRead', 'digitalWrite', 'analogRead', 'analogWrite', 'pwmWrite', 'servoWrite',
-       'i2cConfig', 'i2cWrite', 'i2cRead']
+      [
+        'pins', 'pinMode', 'digitalRead', 'digitalWrite', 'analogRead',
+        'analogWrite', 'pwmWrite', 'servoWrite', 'i2cConfig', 'i2cWrite',
+        'i2cRead'
+      ]
 
     connect: (callback) ->
       Logger.debug "Connecting to board '#{@name}'..."
+
       @board = new LibFirmata.Board @connection.port.toString(), =>
         (callback)(null)
         @connection.emit 'connect'
@@ -34,7 +38,7 @@ namespace "Cylon.Adaptor", ->
 
     disconnect: ->
       Logger.debug "Disconnecting from board '#{@name}'..."
-      @board.close
+      @board.close()
 
     digitalRead: (pin, callback) ->
       @board.pinMode pin, @board.MODES.INPUT
@@ -67,3 +71,5 @@ namespace "Cylon.Adaptor", ->
 
     i2cRead: (address, length, callback) ->
       @board.sendI2CReadRequest address, length, callback
+
+module.exports = Cylon.Adaptor.Firmata
