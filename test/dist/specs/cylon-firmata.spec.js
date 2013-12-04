@@ -15,7 +15,7 @@
 
   firmata = source("cylon-firmata");
 
-  describe("basic tests", function() {
+  describe("Cylon.Firmata", function() {
     it("standard async test", function(done) {
       var bool;
       bool = false;

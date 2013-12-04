@@ -2,7 +2,7 @@
   'use strict';
   source('firmata');
 
-  describe('Cylon.Firmata.Adaptor', function() {
+  describe('Cylon.Adaptor.Firmata', function() {
     return it('needs test coverage');
   });
 

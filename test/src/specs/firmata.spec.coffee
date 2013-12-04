@@ -2,5 +2,5 @@
 
 source 'firmata'
 
-describe 'Cylon.Firmata.Adaptor', ->
+describe 'Cylon.Adaptor.Firmata', ->
   it 'needs test coverage'
