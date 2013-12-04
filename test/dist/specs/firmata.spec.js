@@ -6,7 +6,7 @@
 
   Logger.setup(false);
 
-  describe('Cylon.Firmata.Adaptor', function() {
+  describe('Cylon.Adaptor.Firmata', function() {
     describe('initialization', function() {
       it('sets @myself as a reference to the Firmata instance', function() {
         var firmata;

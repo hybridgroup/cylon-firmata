@@ -6,7 +6,7 @@ source 'firmata'
 
 Logger.setup false
 
-describe 'Cylon.Firmata.Adaptor', ->
+describe 'Cylon.Adaptor.Firmata', ->
 
   describe 'initialization', ->
     it 'sets @myself as a reference to the Firmata instance', ->

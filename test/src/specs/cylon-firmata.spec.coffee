@@ -8,7 +8,7 @@ namespace 'Cylon', ->
 
 firmata = source("cylon-firmata")
 
-describe "basic tests", ->
+describe "Cylon.Firmata", ->
   it "standard async test", (done) ->
     bool = false
     bool.should.be.false
