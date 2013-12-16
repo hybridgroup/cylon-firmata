@@ -11,12 +11,10 @@
 LibFirmata = require('firmata')
 namespace = require 'node-namespace'
 
-namespace "Cylon.Adaptor", ->
-  class @Firmata extends Cylon.Basestar
+namespace "Cylon.Adaptors", ->
+  class @Firmata extends @Adaptor
     constructor: (opts = {}) ->
       super
-      @connection = opts.connection
-      @name = opts.name
       @board = ""
       @myself = this
 
@@ -72,4 +70,4 @@ namespace "Cylon.Adaptor", ->
     i2cRead: (address, length, callback) ->
       @board.sendI2CReadRequest address, length, callback
 
-module.exports = Cylon.Adaptor.Firmata
+module.exports = Cylon.Adaptors.Firmata

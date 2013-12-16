@@ -6,37 +6,37 @@
 
   Logger.setup(false);
 
-  describe('Cylon.Adaptor.Firmata', function() {
+  describe('Cylon.Adaptors.Firmata', function() {
     describe('initialization', function() {
       it('sets @myself as a reference to the Firmata instance', function() {
         var firmata;
-        firmata = new Cylon.Adaptor.Firmata;
+        firmata = new Cylon.Adaptors.Firmata;
         return firmata.myself.should.be.eql(firmata);
       });
       it('sets @connection to the provided connection', function() {
         var firmata;
-        firmata = new Cylon.Adaptor.Firmata({
+        firmata = new Cylon.Adaptors.Firmata({
           connection: "testConnection"
         });
         return firmata.connection.should.be.eql("testConnection");
       });
       it('sets @name to the provided name', function() {
         var firmata;
-        firmata = new Cylon.Adaptor.Firmata({
+        firmata = new Cylon.Adaptors.Firmata({
           name: "TestFirmata"
         });
         return firmata.name.should.be.eql("TestFirmata");
       });
       return it('sets @board to an empty string by default', function() {
         var firmata;
-        firmata = new Cylon.Adaptor.Firmata;
+        firmata = new Cylon.Adaptors.Firmata;
         return firmata.board.should.be.eql("");
       });
     });
     return describe('#commands', function() {
       return it('returns an array of Firmata method names', function() {
         var firmata;
-        firmata = new Cylon.Adaptor.Firmata;
+        firmata = new Cylon.Adaptors.Firmata;
         return firmata.commands().should.be.a('array');
       });
     });

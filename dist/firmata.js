@@ -17,7 +17,7 @@
 
   namespace = require('node-namespace');
 
-  namespace("Cylon.Adaptor", function() {
+  namespace("Cylon.Adaptors", function() {
     return this.Firmata = (function(_super) {
       __extends(Firmata, _super);
 
@@ -26,8 +26,6 @@
           opts = {};
         }
         Firmata.__super__.constructor.apply(this, arguments);
-        this.connection = opts.connection;
-        this.name = opts.name;
         this.board = "";
         this.myself = this;
       }
@@ -94,9 +92,9 @@
 
       return Firmata;
 
-    })(Cylon.Basestar);
+    })(this.Adaptor);
   });
 
-  module.exports = Cylon.Adaptor.Firmata;
+  module.exports = Cylon.Adaptors.Firmata;
 
 }).call(this);
