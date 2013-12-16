@@ -64,6 +64,8 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 [![NPM](https://nodei.co/npm/cylon-firmata.png?compact=true)](https://nodei.co/npm/cylon-firmata/)
 
+Version 0.7.0 - Updates to Cylon 0.8.0
+
 Version 0.6.0 - Updates to Cylon 0.7.0
 
 Version 0.5.0 - Updates to Cylon 0.6.0
