@@ -8,11 +8,12 @@
 
 'use strict'
 
+require './cylon-firmata'
 LibFirmata = require('firmata')
 namespace = require 'node-namespace'
 
 namespace "Cylon.Adaptors", ->
-  class @Firmata extends @Adaptor
+  class @Firmata extends Cylon.Adaptor
     constructor: (opts = {}) ->
       super
       @board = ""
@@ -26,8 +27,6 @@ namespace "Cylon.Adaptors", ->
       ]
 
     connect: (callback) ->
-      Logger.debug "Connecting to board '#{@name}'..."
-
       @board = new LibFirmata.Board @connection.port.toString(), =>
         (callback)(null)
         @connection.emit 'connect'
@@ -70,4 +69,3 @@ namespace "Cylon.Adaptors", ->
     i2cRead: (address, length, callback) ->
       @board.sendI2CReadRequest address, length, callback
 
-module.exports = Cylon.Adaptors.Firmata
