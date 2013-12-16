@@ -13,11 +13,13 @@
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
+  require('./cylon-firmata');
+
   LibFirmata = require('firmata');
 
   namespace = require('node-namespace');
 
-  namespace("Cylon.Adaptor", function() {
+  namespace("Cylon.Adaptors", function() {
     return this.Firmata = (function(_super) {
       __extends(Firmata, _super);
 
@@ -26,8 +28,6 @@
           opts = {};
         }
         Firmata.__super__.constructor.apply(this, arguments);
-        this.connection = opts.connection;
-        this.name = opts.name;
         this.board = "";
         this.myself = this;
       }
@@ -38,7 +38,6 @@
 
       Firmata.prototype.connect = function(callback) {
         var _this = this;
-        Logger.debug("Connecting to board '" + this.name + "'...");
         this.board = new LibFirmata.Board(this.connection.port.toString(), function() {
           callback(null);
           return _this.connection.emit('connect');
@@ -94,9 +93,7 @@
 
       return Firmata;
 
-    })(Cylon.Basestar);
+    })(Cylon.Adaptor);
   });
-
-  module.exports = Cylon.Adaptor.Firmata;
 
 }).call(this);

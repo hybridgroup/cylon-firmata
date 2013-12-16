@@ -8,13 +8,14 @@
 
 'use strict';
 
+require "cylon"
 require "./firmata"
 GPIO = require "cylon-gpio"
 I2C = require "cylon-i2c"
 
 module.exports =
   adaptor: (args...) ->
-    new Cylon.Adaptor.Firmata(args...)
+    new Cylon.Adaptors.Firmata(args...)
 
   driver: (args...) ->
     GPIO.driver(args...) or I2C.driver(args...)

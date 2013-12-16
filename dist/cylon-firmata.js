@@ -12,6 +12,8 @@
   var GPIO, I2C,
     __slice = [].slice;
 
+  require("cylon");
+
   require("./firmata");
 
   GPIO = require("cylon-gpio");
@@ -26,7 +28,7 @@
         ctor.prototype = func.prototype;
         var child = new ctor, result = func.apply(child, args);
         return Object(result) === result ? result : child;
-      })(Cylon.Adaptor.Firmata, args, function(){});
+      })(Cylon.Adaptors.Firmata, args, function(){});
     },
     driver: function() {
       var args;
