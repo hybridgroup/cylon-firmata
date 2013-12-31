@@ -18,6 +18,7 @@ namespace "Cylon.Adaptors", ->
       super
       @board = ""
       @myself = this
+      @i2cReady = false
 
     commands: ->
       [
@@ -35,7 +36,7 @@ namespace "Cylon.Adaptors", ->
 
     disconnect: ->
       Logger.debug "Disconnecting from board '#{@name}'..."
-      @board.close()
+      @board.reset()
 
     digitalRead: (pin, callback) ->
       @board.pinMode pin, @board.MODES.INPUT
@@ -60,12 +61,15 @@ namespace "Cylon.Adaptors", ->
       @board.pinMode pin, @board.MODES.SERVO
       @board.analogWrite pin, value
 
-    i2cConfig: (delay) ->
+    i2cConfig: (delay = null) ->
       @board.sendI2CConfig delay
+      @i2cReady = true
 
     i2cWrite: (address, data) ->
+      @i2cConfig unless i2cReady
       @board.sendI2CWriteRequest address, data
 
     i2cRead: (address, length, callback) ->
+      @i2cConfig unless i2cReady
       @board.sendI2CReadRequest address, length, callback
 
