@@ -30,6 +30,7 @@
         Firmata.__super__.constructor.apply(this, arguments);
         this.board = "";
         this.myself = this;
+        this.i2cReady = false;
       }
 
       Firmata.prototype.commands = function() {
@@ -47,7 +48,7 @@
 
       Firmata.prototype.disconnect = function() {
         Logger.debug("Disconnecting from board '" + this.name + "'...");
-        return this.board.close();
+        return this.board.reset();
       };
 
       Firmata.prototype.digitalRead = function(pin, callback) {
@@ -79,16 +80,33 @@
         return this.board.analogWrite(pin, value);
       };
 
-      Firmata.prototype.i2cConfig = function(delay) {
-        return this.board.sendI2CConfig(delay);
+      Firmata.prototype.i2cWrite = function(address, cmd, buff, callback) {
+        if (callback == null) {
+          callback = null;
+        }
+        if (!this.i2cReady) {
+          this._i2cConfig();
+        }
+        return this.board.sendI2CWriteRequest(address, [cmd].concat(buff));
       };
 
-      Firmata.prototype.i2cWrite = function(address, data) {
-        return this.board.sendI2CWriteRequest(address, data);
-      };
-
-      Firmata.prototype.i2cRead = function(address, length, callback) {
+      Firmata.prototype.i2cRead = function(address, cmd, length, callback) {
+        if (callback == null) {
+          callback = null;
+        }
+        if (!this.i2cReady) {
+          this._i2cConfig();
+        }
+        this.board.sendI2CWriteRequest(address, [cmd]);
         return this.board.sendI2CReadRequest(address, length, callback);
+      };
+
+      Firmata.prototype._i2cConfig = function(delay) {
+        if (delay == null) {
+          delay = null;
+        }
+        this.board.sendI2CConfig(delay);
+        return this.i2cReady = true;
       };
 
       return Firmata;
