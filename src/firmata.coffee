@@ -61,15 +61,15 @@ namespace "Cylon.Adaptors", ->
       @board.pinMode pin, @board.MODES.SERVO
       @board.analogWrite pin, value
 
-    i2cConfig: (delay = null) ->
-      @board.sendI2CConfig delay
-      @i2cReady = true
+    i2cWrite: (address, cmd, buff, callback = null) ->
+      @_i2cConfig() unless @i2cReady
+      @board.sendI2CWriteRequest address, [cmd].concat(buff)
 
-    i2cWrite: (address, data) ->
-      @i2cConfig unless i2cReady
-      @board.sendI2CWriteRequest address, data
-
-    i2cRead: (address, length, callback) ->
-      @i2cConfig unless i2cReady
+    i2cRead: (address, cmd, length, callback = null) ->
+      @_i2cConfig() unless @i2cReady
+      @board.sendI2CWriteRequest address, [cmd]
       @board.sendI2CReadRequest address, length, callback
 
+    _i2cConfig: (delay = null) ->
+      @board.sendI2CConfig delay
+      @i2cReady = true
