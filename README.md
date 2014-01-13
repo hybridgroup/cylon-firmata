@@ -2,7 +2,7 @@
 
 Cylon.js (http://cylonjs.com) is a JavaScript framework for robotics and physical computing using Node.js
 
-This module provides an adaptor for microcontrollers such as Arduino that support the Firmata protocol (http://www.gosphero.com/). It uses the Firmata node module (https://github.com/jgautier/firmata) created by [@jgautier](https://github.com/jgautier) thank you!
+This module provides an adaptor for microcontrollers such as Arduino that support the Firmata protocol (http://firmata.org/wiki/Main_Page). It uses the Firmata node module (https://github.com/jgautier/firmata) created by [@jgautier](https://github.com/jgautier) thank you!
 
 Want to use Ruby on robots? Check out our sister project Artoo (http://artoo.io)
 
