@@ -29,3 +29,15 @@ describe 'Cylon.Adaptors.Firmata', ->
     it 'returns an array of Firmata method names', ->
       firmata = new Cylon.Adaptors.Firmata
       firmata.commands().should.be.a 'array'
+
+  describe '#gpio', ->
+    it 'digitalRead'
+    it 'digitalWrite'
+    it 'analogRead'
+    it 'analogWrite'
+    it 'pwmWrite'
+    it 'servoWrite'
+
+  describe '#i2c', ->
+    it 'i2cRead'
+    it 'i2cWrite'

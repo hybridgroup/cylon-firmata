@@ -33,12 +33,24 @@
         return firmata.board.should.be.eql("");
       });
     });
-    return describe('#commands', function() {
+    describe('#commands', function() {
       return it('returns an array of Firmata method names', function() {
         var firmata;
         firmata = new Cylon.Adaptors.Firmata;
         return firmata.commands().should.be.a('array');
       });
+    });
+    describe('#gpio', function() {
+      it('digitalRead');
+      it('digitalWrite');
+      it('analogRead');
+      it('analogWrite');
+      it('pwmWrite');
+      return it('servoWrite');
+    });
+    return describe('#i2c', function() {
+      it('i2cRead');
+      return it('i2cWrite');
     });
   });
 
