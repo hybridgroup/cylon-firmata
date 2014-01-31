@@ -47,7 +47,7 @@
       return {
         firmata: {
           description: "Upload firmata protocol to arduino",
-          command: function() {
+          command: function(args) {
             var address, hexFile, subcmd;
             subcmd = args[0];
             address = args[1];
