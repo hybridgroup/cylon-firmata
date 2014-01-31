@@ -27,6 +27,19 @@
         default:
           return sys.print('OS not yet supported...\n');
       }
+    },
+    install: function() {
+      switch (os.platform()) {
+        case 'linux':
+          ChildProcess.exec('sudo apt-get install avrdude');
+          break;
+        case 'darwin':
+          ChildProcess.exec('brew install avrdude');
+          break;
+        default:
+          sys.print('OS not yet supported...\n');
+      }
+      return true;
     }
   };
 

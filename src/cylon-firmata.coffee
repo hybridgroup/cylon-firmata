@@ -39,6 +39,8 @@ module.exports =
         switch(subcmd)
           when 'upload'
             CliCommands.firmata.upload(address, hexFile)
+          when 'install'
+            CliCommands.firmata.install()
           else
             console.log("cylon firmata argument not recognized, try:\n")
             console.log("1.- cylon firmata upload <serial_address>")

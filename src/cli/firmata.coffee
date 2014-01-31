@@ -21,4 +21,14 @@ firmata =
       else
         sys.print('OS not yet supported...\n')
 
+  install: ->
+    switch(os.platform())
+      when 'linux'
+        ChildProcess.exec('sudo apt-get install avrdude')
+      when 'darwin'
+        ChildProcess.exec('brew install avrdude')
+      else
+        sys.print('OS not yet supported...\n')
+    true
+
 module.exports = firmata
