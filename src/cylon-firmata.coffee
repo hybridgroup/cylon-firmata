@@ -10,6 +10,7 @@
 
 require "cylon"
 require "./firmata"
+CliCommands = require "./cli/commands"
 GPIO = require "cylon-gpio"
 I2C = require "cylon-i2c"
 
@@ -26,3 +27,18 @@ module.exports =
 
     GPIO.register robot
     I2C.register robot
+
+  registerCommands: ->
+    firmata:
+      description: "Upload firmata protocol to arduino"
+      command: () ->
+        subcmd = args[0]
+        address = args[1]
+        hexFile = if args.length > 2 then args[2] else null
+
+        switch(subcmd)
+          when 'upload'
+            CliCommands.firmata.upload(address, hexFile)
+          else
+            console.log("cylon firmata argument not recognized, try:\n")
+            console.log("1.- cylon firmata upload <serial_address>")

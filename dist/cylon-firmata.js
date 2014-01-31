@@ -9,12 +9,14 @@
 
 (function() {
   'use strict';
-  var GPIO, I2C,
+  var CliCommands, GPIO, I2C,
     __slice = [].slice;
 
   require("cylon");
 
   require("./firmata");
+
+  CliCommands = require("./cli/commands");
 
   GPIO = require("cylon-gpio");
 
@@ -40,6 +42,26 @@
       robot.registerAdaptor('cylon-firmata', 'firmata');
       GPIO.register(robot);
       return I2C.register(robot);
+    },
+    registerCommands: function() {
+      return {
+        firmata: {
+          description: "Upload firmata protocol to arduino",
+          command: function() {
+            var address, hexFile, subcmd;
+            subcmd = args[0];
+            address = args[1];
+            hexFile = args.length > 2 ? args[2] : null;
+            switch (subcmd) {
+              case 'upload':
+                return CliCommands.firmata.upload(address, hexFile);
+              default:
+                console.log("cylon firmata argument not recognized, try:\n");
+                return console.log("1.- cylon firmata upload <serial_address>");
+            }
+          }
+        }
+      };
     }
   };
 
