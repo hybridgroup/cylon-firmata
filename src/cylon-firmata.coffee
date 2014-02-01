@@ -44,3 +44,4 @@ module.exports =
           else
             console.log("cylon firmata argument not recognized, try:\n")
             console.log("1.- cylon firmata upload <serial_address>")
+            console.log("2.- cylon firmata install\n")

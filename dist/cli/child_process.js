@@ -1,7 +1,5 @@
 (function() {
-  var childProcess, exec, spawn, sys;
-
-  sys = require('sys');
+  var childProcess, exec, spawn;
 
   spawn = require('child_process').spawn;
 
@@ -10,9 +8,9 @@
   childProcess = {
     exec: function(command) {
       return exec(command, function(err, stdout, stderr) {
-        sys.print(stdout);
-        sys.print(stderr);
-        return sys.print(err);
+        console.log(stdout);
+        console.log(stderr);
+        return console.log(err);
       });
     },
     spawn: function(command, args) {

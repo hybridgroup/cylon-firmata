@@ -1,9 +1,7 @@
 (function() {
-  var ChildProcess, firmata, os, path, sys;
+  var ChildProcess, firmata, os, path;
 
   ChildProcess = require('./child_process');
-
-  sys = require('sys');
 
   os = require('os');
 
@@ -25,7 +23,7 @@
           port = '-P' + serialPort;
           return ChildProcess.spawn('avrdude', [part, programmer, port, baudrate, '-D', hexFile]);
         default:
-          return sys.print('OS not yet supported...\n');
+          return console.log('OS not yet supported...\n');
       }
     },
     install: function() {
@@ -37,7 +35,7 @@
           ChildProcess.exec('brew install avrdude');
           break;
         default:
-          sys.print('OS not yet supported...\n');
+          console.log('OS not yet supported...\n');
       }
       return true;
     }

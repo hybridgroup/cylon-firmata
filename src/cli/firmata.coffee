@@ -1,5 +1,4 @@
 ChildProcess = require('./child_process')
-sys = require('sys')
 os = require('os')
 path = require('path')
 
@@ -19,7 +18,7 @@ firmata =
         port = '-P' + serialPort
         ChildProcess.spawn('avrdude', [part, programmer, port, baudrate, '-D', hexFile])
       else
-        sys.print('OS not yet supported...\n')
+        console.log('OS not yet supported...\n')
 
   install: ->
     switch(os.platform())
@@ -28,7 +27,7 @@ firmata =
       when 'darwin'
         ChildProcess.exec('brew install avrdude')
       else
-        sys.print('OS not yet supported...\n')
+        console.log('OS not yet supported...\n')
     true
 
 module.exports = firmata
