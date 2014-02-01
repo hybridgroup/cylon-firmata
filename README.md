@@ -73,8 +73,6 @@ Thank you!
 
 ## Release History
 
-[![NPM](https://nodei.co/npm/cylon-firmata.png?compact=true)](https://nodei.co/npm/cylon-firmata/)
-
 Version 0.8.0 - Updates to Cylon 0.9.0, correct use of peerDependencies
 
 Version 0.7.0 - Updates to Cylon 0.8.0
