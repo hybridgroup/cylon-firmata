@@ -5,7 +5,8 @@
 
   cliCommands = {
     firmata: {
-      upload: firmata.upload
+      upload: firmata.upload,
+      install: firmata.install
     }
   };
 

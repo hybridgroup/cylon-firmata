@@ -1,13 +1,12 @@
-sys = require('sys')
 spawn = require('child_process').spawn
 exec = require('child_process').exec
 
 childProcess =
   exec: (command) ->
     exec(command, (err, stdout, stderr) ->
-      sys.print(stdout)
-      sys.print(stderr)
-      sys.print(err)
+      console.log(stdout)
+      console.log(stderr)
+      console.log(err)
     )
   spawn: (command, args) ->
 

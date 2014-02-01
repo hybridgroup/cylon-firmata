@@ -55,9 +55,12 @@
             switch (subcmd) {
               case 'upload':
                 return CliCommands.firmata.upload(address, hexFile);
+              case 'install':
+                return CliCommands.firmata.install();
               default:
                 console.log("cylon firmata argument not recognized, try:\n");
-                return console.log("1.- cylon firmata upload <serial_address>");
+                console.log("1.- cylon firmata upload <serial_address>");
+                return console.log("2.- cylon firmata install\n");
             }
           }
         }
