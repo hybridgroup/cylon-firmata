@@ -31,7 +31,7 @@ module.exports =
   registerCommands: ->
     firmata:
       description: "Upload firmata protocol to arduino"
-      command: () ->
+      command: (args) ->
         subcmd = args[0]
         address = args[1]
         hexFile = if args.length > 2 then args[2] else null
