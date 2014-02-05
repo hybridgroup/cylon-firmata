@@ -1,4 +1,3 @@
-#ChildProcess = require('./child_process')
 require "cylon"
 os = require('os')
 path = require('path')
