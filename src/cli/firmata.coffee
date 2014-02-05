@@ -1,9 +1,10 @@
-ChildProcess = require('./child_process')
+require "cylon"
 os = require('os')
 path = require('path')
 
 firmata =
   upload: (serialPort, hexFile) ->
+    cylonProcess = new Cylon.Process
     part = '-patmega328p'
     programmer = '-carduino'
     baudrate = '-b115200'
@@ -13,19 +14,20 @@ firmata =
     switch(os.platform())
       when 'linux'
         port = '-P/dev/' + serialPort
-        ChildProcess.spawn('avrdude', [part, programmer, port, baudrate, '-D', hexFile])
+        cylonProcess.spawn('avrdude', [part, programmer, port, baudrate, '-D', hexFile])
       when 'darwin'
         port = '-P' + serialPort
-        ChildProcess.spawn('avrdude', [part, programmer, port, baudrate, '-D', hexFile])
+        cylonProcess.spawn('avrdude', [part, programmer, port, baudrate, '-D', hexFile])
       else
         console.log('OS not yet supported...\n')
 
   install: ->
+    cylonProcess = new Cylon.Process
     switch(os.platform())
       when 'linux'
-        ChildProcess.exec('sudo apt-get install avrdude')
+        cylonProcess.exec('sudo apt-get install avrdude')
       when 'darwin'
-        ChildProcess.exec('brew install avrdude')
+        cylonProcess.exec('brew install avrdude')
       else
         console.log('OS not yet supported...\n')
     true

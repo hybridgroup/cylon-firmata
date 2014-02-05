@@ -1,7 +1,7 @@
 (function() {
-  var ChildProcess, firmata, os, path;
+  var firmata, os, path;
 
-  ChildProcess = require('./child_process');
+  require("cylon");
 
   os = require('os');
 
@@ -9,7 +9,8 @@
 
   firmata = {
     upload: function(serialPort, hexFile) {
-      var baudrate, hexPath, part, port, programmer;
+      var baudrate, cylonProcess, hexPath, part, port, programmer;
+      cylonProcess = new Cylon.Process;
       part = '-patmega328p';
       programmer = '-carduino';
       baudrate = '-b115200';
@@ -18,21 +19,23 @@
       switch (os.platform()) {
         case 'linux':
           port = '-P/dev/' + serialPort;
-          return ChildProcess.spawn('avrdude', [part, programmer, port, baudrate, '-D', hexFile]);
+          return cylonProcess.spawn('avrdude', [part, programmer, port, baudrate, '-D', hexFile]);
         case 'darwin':
           port = '-P' + serialPort;
-          return ChildProcess.spawn('avrdude', [part, programmer, port, baudrate, '-D', hexFile]);
+          return cylonProcess.spawn('avrdude', [part, programmer, port, baudrate, '-D', hexFile]);
         default:
           return console.log('OS not yet supported...\n');
       }
     },
     install: function() {
+      var cylonProcess;
+      cylonProcess = new Cylon.Process;
       switch (os.platform()) {
         case 'linux':
-          ChildProcess.exec('sudo apt-get install avrdude');
+          cylonProcess.exec('sudo apt-get install avrdude');
           break;
         case 'darwin':
-          ChildProcess.exec('brew install avrdude');
+          cylonProcess.exec('brew install avrdude');
           break;
         default:
           console.log('OS not yet supported...\n');
