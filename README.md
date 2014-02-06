@@ -100,7 +100,7 @@ The main steps are:
 - Upload the Firmata protocol to the arduino
 - Connect to the device using Cylon
 
-First plug the Arduino into your computer via the USB/serial port. A dialog box will appear telling you that a new network interface has been detected. Click "Network Preferences...", and when it opens, simply click "Apply".
+First plug the Arduino into your computer via the USB/serial port.
 
 Install the cylon-firmata module:
 
