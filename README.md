@@ -51,6 +51,89 @@ Cylon.robot
 
 .start()
 ```
+## Connecting to Arduino
+
+### OSX
+
+The main steps are:
+- Install the cylon-firmata npm module
+- Find out what serial port your arduino is connected to
+- Upload the Firmata protocol to the arduino
+- Connect to the device using Cylon
+
+First plug the Arduino into your computer via the USB/serial port. A dialog box will appear telling you that a new network interface has been detected. Click "Network Preferences...", and when it opens, simply click "Apply".
+
+Install the cylon-firmata module:
+
+```
+$ npm install cylon-firmata
+```
+
+Once plugged in, use the `cylon scan serial` command to find out your connection info and serial port address:
+
+```
+$ cylon scan serial
+```
+
+Use the `cylon firmata install` command to install avrdude,
+this will allow you to upload firmata to the arduino:
+
+```
+$ cylon firmata install
+```
+
+Once the avrdude uploader is installed we upload the firmata protocol to
+the arduino, use the arduino serial port address found when you ran
+`cylon scan serial`, or leave it blank to use the default address `/dev/ttyACM0`:
+
+```
+$ cylon firmata upload /dev/ttyACM0
+```
+
+Now you are ready to connect and communicate with the Arduino using serial port connection
+
+### Ubuntu
+
+The main steps are:
+- Install the cylon-firmata npm module
+- Find out what serial port your arduino is connected to
+- Upload the Firmata protocol to the arduino
+- Connect to the device using Cylon
+
+First plug the Arduino into your computer via the USB/serial port. A dialog box will appear telling you that a new network interface has been detected. Click "Network Preferences...", and when it opens, simply click "Apply".
+
+Install the cylon-firmata module:
+
+```
+$ npm install cylon-firmata
+```
+
+Once plugged in, use the `cylon scan serial` command to find out your connection info and serial port address:
+
+```
+$ cylon scan serial
+```
+
+Use the `cylon firmata install` command to install avrdude,
+this will allow you to upload firmata to the arduino:
+
+```
+$ cylon firmata install
+```
+
+Once the avrdude uploader is installed we upload the firmata protocol to
+the arduino, use the arduino serial port address found when you ran
+`cylon scan serial`, or leave it blank to use the default address `ttyACM0`:
+
+```
+$ cylon firmata upload ttyACM0
+```
+
+Now you are ready to connect and communicate with the Arduino using serial port connection
+
+### Windows
+
+We are currently working on docs and instructions for Windows. Please check back soon!
 
 ## Documentation
 We're busy adding documentation to our web site at http://cylonjs.com/ please check there as we continue to work on Cylon.js
