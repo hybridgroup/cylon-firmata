@@ -156,6 +156,8 @@ Thank you!
 
 ## Release History
 
+Version 0.9.0 - Updates to Cylon 0.10.0, CLI commands to install Firmata
+
 Version 0.8.0 - Updates to Cylon 0.9.0, correct use of peerDependencies
 
 Version 0.7.0 - Updates to Cylon 0.8.0
