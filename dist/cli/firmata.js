@@ -16,12 +16,11 @@
       baudrate = '-b115200';
       hexPath = path.join(__dirname, "../../src/cli/hex/StandardFirmata.cpp.hex");
       hexFile = hexFile === null || hexFile === void 0 ? "-Uflash:w:" + hexPath + ":i" : hexFile;
+      port = serialPort.search(/[\/\:]/) >= 0 ? "-P" + serialPort : "-P/dev/" + serialPort;
       switch (os.platform()) {
         case 'linux':
-          port = '-P/dev/' + serialPort;
           return cylonProcess.spawn('avrdude', [part, programmer, port, baudrate, '-D', hexFile]);
         case 'darwin':
-          port = '-P' + serialPort;
           return cylonProcess.spawn('avrdude', [part, programmer, port, baudrate, '-D', hexFile]);
         default:
           return console.log('OS not yet supported...\n');
