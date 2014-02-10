@@ -10,13 +10,12 @@ firmata =
     baudrate = '-b115200'
     hexPath = path.join __dirname, "../../src/cli/hex/StandardFirmata.cpp.hex"
     hexFile = if (hexFile == null || hexFile == undefined) then "-Uflash:w:#{ hexPath }:i" else hexFile
+    port = if (serialPort.search(/[\/\:]/) >= 0) then "-P#{ serialPort }" else "-P/dev/#{ serialPort }"
 
     switch(os.platform())
       when 'linux'
-        port = '-P/dev/' + serialPort
         cylonProcess.spawn('avrdude', [part, programmer, port, baudrate, '-D', hexFile])
       when 'darwin'
-        port = '-P' + serialPort
         cylonProcess.spawn('avrdude', [part, programmer, port, baudrate, '-D', hexFile])
       else
         console.log('OS not yet supported...\n')
