@@ -7,6 +7,8 @@
   Logger.setup(false);
 
   describe('Cylon.Adaptors.Firmata', function() {
+    var spy;
+    spy = sinon.spy;
     describe('initialization', function() {
       it('sets @myself as a reference to the Firmata instance', function() {
         var firmata;
@@ -41,12 +43,102 @@
       });
     });
     describe('#gpio', function() {
-      it('digitalRead');
-      it('digitalWrite');
-      it('analogRead');
-      it('analogWrite');
-      it('pwmWrite');
-      return it('servoWrite');
+      var firmata;
+      firmata = new Cylon.Adaptors.Firmata;
+      it('digitalRead', function() {
+        var board;
+        board = {
+          MODES: {
+            INPUT: 0
+          },
+          pinMode: spy(),
+          digitalRead: spy()
+        };
+        firmata.board = board;
+        firmata.digitalRead(3, function() {});
+        assert(board.pinMode.calledOnce);
+        assert(board.pinMode.calledWith(3, 0));
+        assert(board.digitalRead.calledOnce);
+        return assert(board.digitalRead.calledWith(3));
+      });
+      it('digitalWrite', function() {
+        var board;
+        board = {
+          MODES: {
+            OUTPUT: 1
+          },
+          pinMode: spy(),
+          digitalWrite: spy()
+        };
+        firmata.board = board;
+        firmata.digitalWrite(3, 1);
+        assert(board.pinMode.calledOnce);
+        assert(board.pinMode.calledWith(3, 1));
+        assert(board.digitalWrite.calledOnce);
+        return assert(board.digitalWrite.calledWith(3, 1));
+      });
+      it('analogRead', function() {
+        var board, callback;
+        board = {
+          analogRead: spy()
+        };
+        callback = function() {};
+        firmata.board = board;
+        firmata.analogRead(3, callback);
+        assert(board.analogRead.calledOnce);
+        return assert(board.analogRead.calledWith(3, callback));
+      });
+      it('analogWrite', function() {
+        var board;
+        board = {
+          MODES: {
+            ANALOG: 1
+          },
+          pinMode: spy(),
+          analogPins: {
+            3: 'pin'
+          },
+          analogWrite: spy()
+        };
+        firmata.board = board;
+        firmata.analogWrite(3, 1);
+        assert(board.pinMode.calledOnce);
+        assert(board.pinMode.calledWith('pin', 1));
+        assert(board.analogWrite.calledOnce);
+        return assert(board.analogWrite.calledWith('pin', 1));
+      });
+      it('pwmWrite', function() {
+        var board;
+        board = {
+          MODES: {
+            PWM: 'PWM'
+          },
+          analogWrite: spy(),
+          pinMode: spy()
+        };
+        firmata.board = board;
+        firmata.pwmWrite(3, 'hello');
+        assert(board.pinMode.calledOnce);
+        assert(board.pinMode.calledWith(3, 'PWM'));
+        assert(board.analogWrite.calledOnce);
+        return assert(board.analogWrite.calledWith(3, 'hello'));
+      });
+      return it('servoWrite', function() {
+        var board;
+        board = {
+          MODES: {
+            SERVO: 'servo'
+          },
+          analogWrite: spy(),
+          pinMode: spy()
+        };
+        firmata.board = board;
+        firmata.servoWrite(3, 'hello');
+        assert(board.pinMode.calledOnce);
+        assert(board.pinMode.calledWith(3, 'servo'));
+        assert(board.analogWrite.calledOnce);
+        return assert(board.analogWrite.calledWith(3, 'hello'));
+      });
     });
     return describe('#i2c', function() {
       it('i2cRead');
