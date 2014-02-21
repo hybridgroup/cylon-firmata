@@ -108,5 +108,34 @@ describe 'Cylon.Adaptors.Firmata', ->
       assert board.analogWrite.calledWith 3, 'hello'
 
   describe '#i2c', ->
-    it 'i2cRead'
-    it 'i2cWrite'
+    firmata = new Cylon.Adaptors.Firmata
+
+    it 'i2cRead', ->
+      i2cconfig = firmata._i2cConfig = spy()
+      firmata.i2cReady = false
+      board = { sendI2CReadRequest: spy(), sendI2CWriteRequest: spy() }
+      callback = ->
+      firmata.board = board
+
+      firmata.i2cRead 'address', 'command', 10, callback
+
+      assert i2cconfig.calledOnce
+
+      assert board.sendI2CWriteRequest.calledOnce
+      assert board.sendI2CWriteRequest.calledWith 'address', ['command']
+
+      assert board.sendI2CReadRequest.calledOnce
+      assert board.sendI2CReadRequest.calledWith 'address', 10, callback
+
+    it 'i2cWrite', ->
+      i2cconfig = firmata._i2cConfig = spy()
+      firmata.i2cReady = false
+      board = { sendI2CWriteRequest: spy() }
+      firmata.board = board
+
+      firmata.i2cWrite 'address', 'command', ['buffer']
+
+      assert i2cconfig.calledOnce
+
+      assert board.sendI2CWriteRequest.calledOnce
+      assert board.sendI2CWriteRequest.calledWith 'address', ['command', 'buffer']

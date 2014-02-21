@@ -141,8 +141,38 @@
       });
     });
     return describe('#i2c', function() {
-      it('i2cRead');
-      return it('i2cWrite');
+      var firmata;
+      firmata = new Cylon.Adaptors.Firmata;
+      it('i2cRead', function() {
+        var board, callback, i2cconfig;
+        i2cconfig = firmata._i2cConfig = spy();
+        firmata.i2cReady = false;
+        board = {
+          sendI2CReadRequest: spy(),
+          sendI2CWriteRequest: spy()
+        };
+        callback = function() {};
+        firmata.board = board;
+        firmata.i2cRead('address', 'command', 10, callback);
+        assert(i2cconfig.calledOnce);
+        assert(board.sendI2CWriteRequest.calledOnce);
+        assert(board.sendI2CWriteRequest.calledWith('address', ['command']));
+        assert(board.sendI2CReadRequest.calledOnce);
+        return assert(board.sendI2CReadRequest.calledWith('address', 10, callback));
+      });
+      return it('i2cWrite', function() {
+        var board, i2cconfig;
+        i2cconfig = firmata._i2cConfig = spy();
+        firmata.i2cReady = false;
+        board = {
+          sendI2CWriteRequest: spy()
+        };
+        firmata.board = board;
+        firmata.i2cWrite('address', 'command', ['buffer']);
+        assert(i2cconfig.calledOnce);
+        assert(board.sendI2CWriteRequest.calledOnce);
+        return assert(board.sendI2CWriteRequest.calledWith('address', ['command', 'buffer']));
+      });
     });
   });
 
