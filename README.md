@@ -156,6 +156,8 @@ Thank you!
 
 ## Release History
 
+Version 0.10.2 - Correct version numbers
+
 Version 0.10.1 - CLI bugfixes
 
 Version 0.10.0 - Updates to Cylon 0.11.0, migrated to pure JS
