@@ -5,10 +5,11 @@ Cylon.robot({
 
   device: {
     name: 'sensor',
-    driver: 'analogSensor',
+    driver: 'ir-range-sensor',
     pin: 0,
     upperLimit: 400,
-    lowerLimit: 100
+    lowerLimit: 100,
+    model: 'gp2y0a41sk0f'
   },
 
   work: function(my) {
@@ -16,14 +17,18 @@ Cylon.robot({
         lowest;
 
     my.sensor.on('analogRead', function(val){
-      //console.log('Analor Read Value ===>', val);
+      console.log('Analor Read Value ===>', val);
       if (highest === undefined) highest = val;
       if (lowest === undefined) lowest = val;
 
       highest = (val > highest) ? val : highest;
       lowest = (val < lowest) ? val : lowest;
+
       console.log("Highest IR Range Value read: ", highest)
       console.log("Lowest IR Range Value read: ", lowest)
+
+      console.log("Range in CM =>", my.sensor.rangecm());
+      console.log("Range in Inches =>", my.sensor.range());
     });
 
     my.sensor.on('upperLimit', function(val) {
