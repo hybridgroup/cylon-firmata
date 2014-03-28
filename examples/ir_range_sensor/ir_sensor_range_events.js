@@ -17,7 +17,7 @@ Cylon.robot({
       console.log('Range in inches ===>', range);
     });
 
-    my.sensor.on('rangecm', function(range){
+    my.sensor.on('rangeCm', function(range){
       console.log('Range in cm ===>', range);
     });
   }

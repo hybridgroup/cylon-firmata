@@ -27,7 +27,7 @@ Cylon.robot({
       console.log("Highest IR Range Value read: ", highest)
       console.log("Lowest IR Range Value read: ", lowest)
 
-      console.log("Range in CM =>", my.sensor.rangecm());
+      console.log("Range in CM =>", my.sensor.rangeCm());
       console.log("Range in Inches =>", my.sensor.range());
     });
 
