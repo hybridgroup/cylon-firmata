@@ -18,7 +18,7 @@ Cylon.robot({
         console.log("Starting Color: ", data)
       });
 
-      every((2).second(), function() {
+      every((2).seconds(), function() {
         my.blinkm.getRGBColor(function(data){
           console.log("Current Color: ", data);
         });

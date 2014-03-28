@@ -8,7 +8,7 @@ Cylon.robot({
     var angle = 30;
     var increment = 40;
 
-    every(1..seconds(), function() {
+    every((1).seconds(), function() {
       angle += increment;
       my.servo.angle(angle);
 

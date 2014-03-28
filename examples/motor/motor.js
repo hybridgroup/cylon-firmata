@@ -5,8 +5,8 @@ Cylon.robot({
   device: { name: 'motor', driver: 'motor', pin: 3 },
 
   work: function(my) {
-    var speed = 0;
-    var increment = 5;
+    var speed = 0,
+        increment = 5;
 
     every(0.05.seconds(), function() {
       speed += increment;
