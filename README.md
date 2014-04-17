@@ -156,6 +156,8 @@ Thank you!
 
 ## Release History
 
+Version 0.11.1 - Added examples and updated adaptor
+
 Version 0.11.0 - Update to cylon 0.12.0
 
 Version 0.10.2 - Correct version numbers
