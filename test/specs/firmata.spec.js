@@ -1,5 +1,6 @@
 'use strict';
 
+var Cylon = require('cylon');
 var LibFirmata = require('firmata');
 
 var adaptor = source('firmata');
@@ -83,17 +84,17 @@ describe('Cylon.Adaptors.Firmata', function() {
     beforeEach(function() {
       firmata.board = { reset: spy() };
 
-      stub(Logger, 'debug');
+      stub(Cylon.Logger, 'debug');
 
       firmata.disconnect();
     });
 
     afterEach(function() {
-      Logger.debug.restore();
+      Cylon.Logger.debug.restore();
     });
 
     it("logs that it's disconnecting from the board", function() {
-      expect(Logger.debug).to.be.calledWith("Disconnecting from board 'Firmata'")
+      expect(Cylon.Logger.debug).to.be.calledWith("Disconnecting from board 'Firmata'")
     });
 
     it("calls #disconnect on the board", function() {
