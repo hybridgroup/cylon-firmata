@@ -2,19 +2,28 @@ var Cylon = require('cylon');
 
 Cylon.robot({
   connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
-  device: { name: 'servo', driver: 'servo', pin: 3, range: { min: 30, max: 150 } },
+
+  device: {
+    name: 'servo',
+    driver: 'servo',
+    pin: 3,
+    angleLimits: { bottom: 20, top: 160 }
+  },
 
   work: function(my) {
-    var angle = 30;
-    var increment = 40;
+    var angle = 0,
+        increment = 20;
 
     every((1).seconds(), function() {
       angle += increment;
+
       my.servo.angle(angle);
 
       console.log("Current Angle: " + (my.servo.currentAngle()));
 
-      if ((angle === 30) || (angle === 150)) { increment = -increment; }
+      if ((angle === 0) || (angle === 180)) {
+        increment = -increment;
+      }
     });
   }
 }).start();

@@ -21,7 +21,13 @@ this is set to min: 30, max: 150 to prevent damaging the servo when giving it
 an angle outside the range it can cover.
 
       connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
-      device: { name: 'servo', driver: 'servo', pin: 3, range: { min: 30, max: 150 } },
+      device: {
+        name: 'servo',
+        driver: 'servo',
+        pin: 3,
+        angleLimits: { bottom: 20, top: 160 }
+      },
+
 
 We'll start defining the work for our robot next:
 
@@ -30,8 +36,8 @@ We'll start defining the work for our robot next:
 We'll define variables to hold our servo's angle, and the rate at which that
 angle will change:
 
-        var angle = 30;
-        var increment = 40;
+        var angle = 30,
+            increment = 40;
 
 Every second, we'll increment the `angle`, set the servo to run at that angle,
 and log the angle we're running at to the console. We'll also make sure to
@@ -40,11 +46,14 @@ supported:
 
         every((1).seconds(), function() {
           angle += increment;
+
           my.servo.angle(angle);
 
           console.log("Current Angle: " + (my.servo.currentAngle()));
 
-          if ((angle === 30) || (angle === 150)) { increment = -increment; }
+          if ((angle === 30) || (angle === 150)) {
+            increment = -increment;
+          }
         });
       }
 
