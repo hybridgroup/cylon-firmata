@@ -31,7 +31,7 @@ describe('Cylon.Adaptors.Firmata', function() {
 
   describe("#commands", function() {
     it("returns an array of Firmata command names", function() {
-      var commands = firmata.commands();
+      var commands = firmata.commands;
 
       expect(commands).to.be.a('array');
 
@@ -73,7 +73,7 @@ describe('Cylon.Adaptors.Firmata', function() {
 
     it("proxies methods from the board to the adaptor instance", function() {
       expect(firmata.proxyMethods).to.be.calledWith(
-        firmata.commands(),
+        firmata.commands,
         firmata.board,
         firmata
       );
