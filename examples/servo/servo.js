@@ -7,7 +7,7 @@ Cylon.robot({
     name: 'servo',
     driver: 'servo',
     pin: 3,
-    angleLimits: { bottom: 20, top: 160 }
+    limits: { bottom: 20, top: 160 }
   },
 
   work: function(my) {

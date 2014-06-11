@@ -25,7 +25,7 @@ an angle outside the range it can cover.
         name: 'servo',
         driver: 'servo',
         pin: 3,
-        angleLimits: { bottom: 20, top: 160 }
+        limits: { bottom: 20, top: 160 }
       },
 
 
