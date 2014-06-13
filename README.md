@@ -156,6 +156,8 @@ Thank you!
 
 ## Release History
 
+Version 0.13.0 - Compatibility with Cylon 0.15.0
+
 Version 0.12.0 - Compatibility with Cylon 0.14.0, remove node-namespace.
 
 Version 0.11.1 - Added examples and updated adaptor
