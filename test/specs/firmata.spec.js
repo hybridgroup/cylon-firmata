@@ -20,10 +20,6 @@ describe('Cylon.Adaptors.Firmata', function() {
       expect(firmata.board).to.be.eql("");
     });
 
-    it("sets @myself as a circular reference", function() {
-      expect(firmata.myself).to.be.eql(firmata);
-    });
-
     it("sets @i2cReady to false by default", function() {
       expect(firmata.i2cReady).to.be.eql(false);
     });
