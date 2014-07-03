@@ -19,7 +19,7 @@ Let's define the connection to our Arduino:
       connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
 
 Now we can define the analog sensor we're going to use, along with it's upper
-and lower limits (Use pin number from 0 to 5 in Arduino UNO or from 40 to 55 in Arduino MEGA):
+and lower limits:
 
       device: {
         name: 'sensor',
