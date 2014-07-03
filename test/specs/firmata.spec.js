@@ -177,7 +177,7 @@ describe('Cylon.Adaptors.Firmata', function() {
     });
 
     it("uses #analogWrite to write the value to the pin", function() {
-      expect(firmata.board.analogWrite).to.be.calledWith(4, 0.5);
+      expect(firmata.board.analogWrite).to.be.calledWith(4, 127.5);
     });
   });
 
@@ -197,7 +197,7 @@ describe('Cylon.Adaptors.Firmata', function() {
     });
 
     it("uses #analogWrite to write the value to the pin", function() {
-      expect(firmata.board.analogWrite).to.be.calledWith(4, 0.5);
+      expect(firmata.board.analogWrite).to.be.calledWith(4, 127.5);
     });
   });
 
@@ -205,11 +205,11 @@ describe('Cylon.Adaptors.Firmata', function() {
     beforeEach(function() {
       firmata.board = {
         pinMode: spy(),
-        analogWrite: spy(),
+        servoWrite: spy(),
         MODES: { SERVO: 's' }
       };
 
-      firmata.servoWrite(4 , 0.5);
+      firmata.servoWrite(4, 0.5);
     });
 
     it("sets the pin mode on the board to servo", function() {
@@ -217,7 +217,7 @@ describe('Cylon.Adaptors.Firmata', function() {
     });
 
     it("uses #analogWrite to write the value to the pin", function() {
-      expect(firmata.board.analogWrite).to.be.calledWith(4, 0.5);
+      expect(firmata.board.servoWrite).to.be.calledWith(4, 90);
     });
   });
 
