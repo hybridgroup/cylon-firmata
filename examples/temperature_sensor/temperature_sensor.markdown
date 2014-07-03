@@ -18,7 +18,8 @@ Let's define the connection to our Arduino:
 
     connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/cu.usbmodem1451' },
 
-Now we can define the analog sensor we're going to use (TMP36)
+Now we can define the analog sensor we're going to use (TMP36),
+(Use pin number from 0 to 5 in Arduino UNO or from 40 to 55 on Arduino MEGA):
 
     device: { name: 'sensor', driver: 'analogSensor', pin: 0, },
 
