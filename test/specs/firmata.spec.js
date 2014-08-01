@@ -15,6 +15,10 @@ describe('Cylon.Adaptors.Firmata', function() {
     });
   });
 
+  it('should inherit from Cylon.Adaptor', function(){
+    expect(adaptor.__super__).to.be.eql(Cylon.Adaptor.prototype)
+  })
+
   describe("constructor", function() {
     it("sets @board to an empty string by default", function() {
       expect(firmata.board).to.be.eql("");
