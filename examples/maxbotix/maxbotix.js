@@ -7,7 +7,7 @@ Cylon.robot({
   work: function(my) {
     every((1).seconds(), function() {
       my.maxbotix.range(function(data) {
-        Logger.info("range: " + data);
+        console.log("range: " + data);
       });
     });
   }

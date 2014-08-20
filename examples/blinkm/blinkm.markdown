@@ -36,7 +36,7 @@ We stop the default BlinkM's light script
 We'll request the BlinkM's version, and print that to the console
 
           my.blinkm.getFirmware(function(version) {
-            Logger.info("Started BlinkM version " + version);
+            console.log("Started BlinkM version " + version);
           });
 
 By default, we'll turn the LED off

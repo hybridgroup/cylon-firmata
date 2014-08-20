@@ -10,7 +10,7 @@ Cylon.robot({
       my.blinkm.stopScript();
 
       my.blinkm.getFirmware(function(version) {
-        Logger.info("Started BlinkM version " + version);
+        console.log("Started BlinkM version " + version);
       });
 
       my.blinkm.goToRGB(0,0,0);
