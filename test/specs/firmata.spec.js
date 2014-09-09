@@ -81,24 +81,21 @@ describe('Cylon.Adaptors.Firmata', function() {
   });
 
   describe("#disconnect", function() {
+    var cb;
+
     beforeEach(function() {
       firmata.board = { reset: spy() };
+      cb = spy();
 
-      stub(Cylon.Logger, 'debug');
-
-      firmata.disconnect();
-    });
-
-    afterEach(function() {
-      Cylon.Logger.debug.restore();
-    });
-
-    it("logs that it's disconnecting from the board", function() {
-      expect(Cylon.Logger.debug).to.be.calledWith("Disconnecting from board 'Firmata'")
+      firmata.disconnect(cb);
     });
 
     it("calls #disconnect on the board", function() {
       expect(firmata.board.reset).to.be.called;
+    });
+
+    it("triggers the provided callback", function() {
+      expect(cb).to.be.called;
     });
   });
 
