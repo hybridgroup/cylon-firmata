@@ -10,7 +10,7 @@ Cylon.robot({
         var temp = data['temperature'],
             pressure = data['pressure'];
 
-        Logger.info("temperature " + temp  + " pressure " + pressure);
+        console.log("temperature " + temp  + " pressure " + pressure);
       });
     });
   }

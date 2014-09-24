@@ -10,7 +10,7 @@ Cylon.robot(
   work: function(my) {
     every((1).second(), function() {
       my.hmc6352.heading(function(data) {
-        Logger.info("heading: " + data);
+        console.log("heading: " + data);
       });
     });
   }}

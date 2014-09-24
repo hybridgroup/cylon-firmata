@@ -81,24 +81,21 @@ describe('Cylon.Adaptors.Firmata', function() {
   });
 
   describe("#disconnect", function() {
+    var cb;
+
     beforeEach(function() {
       firmata.board = { reset: spy() };
+      cb = spy();
 
-      stub(Cylon.Logger, 'debug');
-
-      firmata.disconnect();
-    });
-
-    afterEach(function() {
-      Cylon.Logger.debug.restore();
-    });
-
-    it("logs that it's disconnecting from the board", function() {
-      expect(Cylon.Logger.debug).to.be.calledWith("Disconnecting from board 'Firmata'")
+      firmata.disconnect(cb);
     });
 
     it("calls #disconnect on the board", function() {
       expect(firmata.board.reset).to.be.called;
+    });
+
+    it("triggers the provided callback", function() {
+      expect(cb).to.be.called;
     });
   });
 
@@ -229,11 +226,11 @@ describe('Cylon.Adaptors.Firmata', function() {
 
       firmata.board = { sendI2CWriteRequest: spy() };
 
-      stub(firmata, '_i2cConfig');
+      stub(firmata, 'i2cConfig');
     });
 
     afterEach(function() {
-      firmata._i2cConfig.restore();
+      firmata.i2cConfig.restore();
     });
 
     context("when the board is configured up for i2c", function() {
@@ -242,8 +239,8 @@ describe('Cylon.Adaptors.Firmata', function() {
         firmata.i2cWrite('address', 'command', 'buffer', callback);
       });
 
-      it("doesn't call #_i2cConfig", function() {
-        expect(firmata._i2cConfig).to.not.be.called;
+      it("doesn't call #i2cConfig", function() {
+        expect(firmata.i2cConfig).to.not.be.called;
       });
 
       it("sends a write request with #sendI2CWriteRequest", function() {
@@ -264,8 +261,8 @@ describe('Cylon.Adaptors.Firmata', function() {
         firmata.i2cWrite('address', 'command', 'buffer', callback)
       });
 
-      it("calls #_i2cConfig", function() {
-        expect(firmata._i2cConfig).to.be.called;
+      it("calls #i2cConfig", function() {
+        expect(firmata.i2cConfig).to.be.called;
       });
     });
   });
@@ -280,11 +277,11 @@ describe('Cylon.Adaptors.Firmata', function() {
         sendI2CReadRequest: stub()
       };
 
-      stub(firmata, '_i2cConfig');
+      stub(firmata, 'i2cConfig');
     });
 
     afterEach(function() {
-      firmata._i2cConfig.restore();
+      firmata.i2cConfig.restore();
     });
 
     context("When the board is configured for i2c", function() {
@@ -330,17 +327,17 @@ describe('Cylon.Adaptors.Firmata', function() {
         firmata.i2cRead('address', 'command', 10, callback)
       });
 
-      it("calls #_i2cConfig, telling it to delay for 2000ms", function() {
-        expect(firmata._i2cConfig).to.be.calledWith(2000);
+      it("calls #i2cConfig, telling it to delay for 2000ms", function() {
+        expect(firmata.i2cConfig).to.be.calledWith(2000);
       });
     })
   });
 
-  describe("#_i2cConfig", function() {
+  describe("#i2cConfig", function() {
     beforeEach(function() {
       firmata.board = { sendI2CConfig: spy() };
       firmata.i2cReady = false;
-      firmata._i2cConfig(2000);
+      firmata.i2cConfig(2000);
     });
 
     it("calls #sendI2CConfig on the board with the provided delay", function() {
