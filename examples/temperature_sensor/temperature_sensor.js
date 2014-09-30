@@ -7,7 +7,9 @@ var robot = Cylon.robot({
   device:     { name: 'sensor', driver: 'analogSensor', pin: 0 },
 
   work: function(my) {
-    var analogValue = 0;
+    var analogValue = 0,
+        voltage = 0,
+        temperature = 0;
 
     every((5).second(), function() {
       analogValue = my.sensor.analogRead();

@@ -1,19 +1,24 @@
 var cylon = require('cylon');
 
-var robot = cylon.robot({
+cylon.robot({
   name: 'samantha',
   connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0'},
   device: { name: 'sensor', driver: 'analogSensor', pin: 0, upperLimit: 900, lowerLimit: 100 }
-});
+})
 
-robot.on('ready', function() {
-  robot.sensor.on('upperLimit', function(val) {
+.on('ready', function(bot) {
+  bot.sensor.on('analogRead', function(val) {
+    console.log('analog read value:', val);
+    console.log('analog read value:', bot.sensor.analogRead());
+  });
+
+  bot.sensor.on('upperLimit', function(val) {
     console.log("Upper limit reached ===> " + val);
   });
 
-  robot.sensor.on('lowerLimit', function(val) {
+  bot.sensor.on('lowerLimit', function(val) {
     console.log("Lower limit reached ===> " + val);
   });
-});
+})
 
-cylon.start();
+.start();

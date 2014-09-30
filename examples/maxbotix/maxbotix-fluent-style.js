@@ -1,14 +1,15 @@
 var cylon = require('cylon');
 
 cylon.robot({
-  name: 'samantha',
   connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
-  device: { name: 'led', driver: 'led', pin: 13 }
+  device: { name: 'maxbotix', driver: 'maxbotix' }
 })
 
-.on('ready', function(bot) {
+.on('ready', function(robot) {
   setInterval(function() {
-    bot.led.toggle();
+    robot.maxbotix.range(function(data) {
+      console.log("range: " + data);
+    });
   }, 1000);
 })
 
