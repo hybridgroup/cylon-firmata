@@ -107,7 +107,7 @@ describe('Cylon.Adaptors.Firmata', function() {
 
       firmata.board = {
         pinMode: spy(),
-        digitalRead: spy(),
+        digitalRead: stub().callsArgWith(1, 1),
         MODES: { INPUT: 'r' }
       };
 
@@ -120,8 +120,7 @@ describe('Cylon.Adaptors.Firmata', function() {
 
     it("uses #digitalRead to get the value from the pin", function() {
       expect(firmata.board.digitalRead).to.be.calledWith(4);
-      // TODO: make sure callback is called with two arguments
-      //expect(callback).to.be.calledWith(null, 4);
+      expect(callback).to.be.calledWith(null, 1);
     });
   });
 
@@ -150,14 +149,13 @@ describe('Cylon.Adaptors.Firmata', function() {
 
     beforeEach(function() {
       callback = spy();
-      firmata.board = { analogRead: spy() };
+      firmata.board = { analogRead: stub().callsArgWith(1, 128) };
       firmata.analogRead(4, callback);
     });
 
     it("uses #analogRead to get the pin value", function() {
       expect(firmata.board.analogRead).to.be.calledWith(4);
-      // TODO: make sure callback is called with two arguments
-      //expect(callback).to.be.calledWith(null, 4);
+      expect(callback).to.be.calledWith(null, 128);
     });
   });
 
