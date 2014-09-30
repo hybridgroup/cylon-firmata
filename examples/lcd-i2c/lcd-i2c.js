@@ -6,9 +6,7 @@ Cylon.robot({
   device: { name: 'lcd', driver: 'lcd' },
 
   work: function(my) {
-    my.lcd.on('start', function(){
-      my.lcd.print("Hello!");
-    });
+    my.lcd.print("Hello!");
   }
 
 }).start();

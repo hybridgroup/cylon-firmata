@@ -6,9 +6,7 @@ cylon.robot({
 })
 
 .on('ready', function(my) {
-  my.lcd.on('start', function(){
-    my.lcd.print("Hello!");
-  });
+  my.lcd.print("Hello!");
 })
 
 .start();

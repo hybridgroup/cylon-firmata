@@ -6,13 +6,11 @@ cylon.robot({
 })
 
 .on('ready', function(robot) {
-  robot.mpl115a2.on('start', function() {
-    robot.mpl115a2.getTemperature(function(data) {
-      var temp = data['temperature'],
-      pressure = data['pressure'];
+  robot.mpl115a2.getTemperature(function(data) {
+    var temp = data['temperature'],
+    pressure = data['pressure'];
 
-      console.log("temperature " + temp  + " pressure " + pressure);
-    });
+    console.log("temperature " + temp  + " pressure " + pressure);
   });
 })
 
