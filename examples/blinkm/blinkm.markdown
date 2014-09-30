@@ -25,38 +25,33 @@ We'll now set up our robot's work.
 
       work: function(my) {
 
-When the BlinkM sends the 'start' event, we'll set up our events
-
-        my.blinkm.on('start', function() {
-
 We stop the default BlinkM's light script
 
-          my.blinkm.stopScript();
+        my.blinkm.stopScript();
 
 We'll request the BlinkM's version, and print that to the console
 
-          my.blinkm.getFirmware(function(version) {
-            console.log("Started BlinkM version " + version);
-          });
+        my.blinkm.getFirmware(function(version) {
+          console.log("Started BlinkM version " + version);
+        });
 
 By default, we'll turn the LED off
 
-          my.blinkm.goToRGB(0,0,0);
+        my.blinkm.goToRGB(0,0,0);
 
 We print the default starting color (in this case 0,0,0 since we turned the led off)
 
-          my.blinkm.getRGBColor(function(data){
-            console.log("Starting Color: ", data)
-          });
+        my.blinkm.getRGBColor(function(data){
+          console.log("Starting Color: ", data)
+        });
 
 Now, every 2 seconds, we'll change the LED color to a random value:
 
-          every((2).seconds(), function() {
-            my.blinkm.getRGBColor(function(data){
-              console.log("Current Color: ", data);
-            });
-            my.blinkm.fadeToRandomRGB(128, 128, 128);
+        every((2).seconds(), function() {
+          my.blinkm.getRGBColor(function(data){
+            console.log("Current Color: ", data);
           });
+          my.blinkm.fadeToRandomRGB(128, 128, 128);
         });
       }
 
