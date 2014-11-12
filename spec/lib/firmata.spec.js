@@ -11,7 +11,7 @@ describe('Cylon.Adaptors.Firmata', function() {
   beforeEach(function() {
     firmata = new adaptor({
       name: "Firmata",
-      connection: { port: "/dev/ttyACM0", emit: spy() }
+      port: "/dev/ttyACM0"
     });
   });
 
@@ -49,16 +49,17 @@ describe('Cylon.Adaptors.Firmata', function() {
 
       stub(LibFirmata, 'Board').callsArg(1);
       stub(firmata, 'proxyMethods');
+      stub(firmata, 'emit');
 
       firmata.connect(callback);
     });
 
     afterEach(function() {
       LibFirmata.Board.restore();
-      firmata.proxyMethods.restore();
     });
 
     it("sets @board to a new LibFirmata.Board instance", function() {
+      expect(LibFirmata.Board).to.be.calledWith("/dev/ttyACM0");
       expect(LibFirmata.Board).to.be.calledWithNew;
       expect(firmata.board).to.be.eql({});
     });
@@ -68,7 +69,7 @@ describe('Cylon.Adaptors.Firmata', function() {
     });
 
     it("emits 'connect' when the board is connected", function() {
-      expect(firmata.connection.emit).to.be.calledWith('connect');
+      expect(firmata.emit).to.be.calledWith('connect');
     });
 
     it("proxies methods from the board to the adaptor instance", function() {
