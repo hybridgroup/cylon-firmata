@@ -21,10 +21,10 @@ Firmata protocol:
 
 This time, our robot will have two devices, an LED and a button:
 
-      devices: [
-        { name: 'led', driver: 'led', pin: 13 },
-        { name: 'button', driver: 'button', pin: 2 }
-      ],
+      devices: {
+        led: { driver: 'led', pin: 13 },
+        button: { driver: 'button', pin: 2 }
+      },
 
 Our robot has very simple work, it will just toggle the LED whenever the button
 sends the 'push' event:
