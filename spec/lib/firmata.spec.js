@@ -3,20 +3,20 @@
 var Cylon = require('cylon');
 var LibFirmata = require('firmata');
 
-var adaptor = source('firmata');
+var Firmata = source('firmata');
 
 describe('Cylon.Adaptors.Firmata', function() {
   var firmata;
 
   beforeEach(function() {
-    firmata = new adaptor({
+    firmata = new Firmata({
       name: "Firmata",
       port: "/dev/ttyACM0"
     });
   });
 
   it('should inherit from Cylon.Adaptor', function(){
-    expect(adaptor.__super__).to.be.eql(Cylon.Adaptor.prototype)
+    expect(firmata).to.be.an.instanceOf(Cylon.Adaptor);
   })
 
   describe("constructor", function() {
@@ -26,6 +26,13 @@ describe('Cylon.Adaptors.Firmata', function() {
 
     it("sets @i2cReady to false by default", function() {
       expect(firmata.i2cReady).to.be.eql(false);
+    });
+
+    context("if no pin is specified", function() {
+      it("throws an error", function() {
+        var fn = function() { new Firmata({ name: 'hi' }); };
+        expect(fn).to.throw("No port specified for Firmata adaptor 'hi'. Cannot proceed");
+      });
     });
   });
 

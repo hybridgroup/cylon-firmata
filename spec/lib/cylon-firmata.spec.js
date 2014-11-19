@@ -19,7 +19,7 @@ describe('cylon-firmata', function() {
 
   describe("#adaptor", function() {
     it("returns a new adaptor instance", function() {
-      expect(module.adaptor({})).to.be.an.instanceOf(Adaptor);
+      expect(module.adaptor({port: ''})).to.be.an.instanceOf(Adaptor);
     });
   });
 });
