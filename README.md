@@ -135,6 +135,8 @@ Thank you!
 
 ## Release History
 
+Version 0.17.2 - Validate if cmd is an array in I2C requests.
+
 Version 0.17.1 - Fixes issue with I2C read not passimg the command as an array
 
 Version 0.17.0 - Compatibility with Cylon 0.20.0
