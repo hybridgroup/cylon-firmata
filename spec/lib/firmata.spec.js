@@ -31,7 +31,7 @@ describe('Cylon.Adaptors.Firmata', function() {
     context("if no pin is specified", function() {
       it("throws an error", function() {
         var fn = function() { new Firmata({ name: 'hi' }); };
-        expect(fn).to.throw("No port specified for Firmata adaptor 'hi'. Cannot proceed");
+        expect(fn).to.throw("No port specified for Firmata adaptor. Cannot proceed");
       });
     });
   });
