@@ -6,7 +6,7 @@ Cylon
   .device({ name: 'hmc6352', driver: 'hmc6352' })
   .on('ready', function(bot) {
     setInterval(function() {
-      bot.hmc6352.heading(function(data) {
+      bot.hmc6352.heading(function(err, data) {
         console.log("heading: " + data);
       });
     }, 1000);

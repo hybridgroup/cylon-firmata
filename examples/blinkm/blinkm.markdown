@@ -31,7 +31,7 @@ We stop the default BlinkM's light script
 
 We'll request the BlinkM's version, and print that to the console
 
-        my.blinkm.getFirmware(function(version) {
+        my.blinkm.getFirmware(function(err, version) {
           console.log("Started BlinkM version " + version);
         });
 
@@ -41,14 +41,14 @@ By default, we'll turn the LED off
 
 We print the default starting color (in this case 0,0,0 since we turned the led off)
 
-        my.blinkm.getRGBColor(function(data){
+        my.blinkm.getRGBColor(function(err, data){
           console.log("Starting Color: ", data)
         });
 
 Now, every 2 seconds, we'll change the LED color to a random value:
 
         every((2).seconds(), function() {
-          my.blinkm.getRGBColor(function(data){
+          my.blinkm.getRGBColor(function(err, data){
             console.log("Current Color: ", data);
           });
           my.blinkm.fadeToRandomRGB(128, 128, 128);

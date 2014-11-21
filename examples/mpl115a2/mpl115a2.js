@@ -5,7 +5,7 @@ Cylon.robot({
   device: { name: 'mpl115a2', driver: 'mpl115a2' },
 
   work: function(my) {
-    my.mpl115a2.getTemperature(function(data) {
+    my.mpl115a2.getTemperature(function(err, data) {
       var temp = data['temperature'],
           pressure = data['pressure'];
 
