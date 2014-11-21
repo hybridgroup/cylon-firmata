@@ -12,6 +12,11 @@ Cylon.robot({
   },
 
   work: function(my) {
+    my.sensor.on('analogRead', function(val) {
+      console.log('analog read value:', val);
+      console.log('analog read value:', my.sensor.analogRead());
+    });
+
     my.sensor.on('upperLimit', function(val) {
       console.log("Upper limit reached ===> " + val);
     });

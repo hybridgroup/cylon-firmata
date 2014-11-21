@@ -33,6 +33,11 @@ Now that Cylon knows about the necessary hardware we're going to be using, we'll
 tell it what work we want to do:
 
       work: function(my) {
+        my.sensor.on('analogRead', function(val) {
+          console.log('analog read value:', val);
+          console.log('analog read value:', my.sensor.analogRead());
+        });
+
         my.sensor.on('upperLimit', function(val) {
           console.log("Upper limit reached ===> " + val);
         });
