@@ -6,7 +6,7 @@ Cylon
   .device({ name: 'maxbotix', driver: 'maxbotix' })
   .on('ready', function(bot) {
     setInterval(function() {
-      bot.maxbotix.range(function(data) {
+      bot.maxbotix.range(function(err, data) {
         console.log("range: " + data);
       });
     }, 1000);
