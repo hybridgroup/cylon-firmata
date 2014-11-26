@@ -2,9 +2,8 @@ var Cylon = require('cylon');
 
 Cylon
   .robot()
-  .connection({ name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM1' })
-  .device({
-    name: 'sensor',
+  .connection('arduino', { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM1' })
+  .device('sensor', {
     driver: 'ir-range-sensor',
     pin: 0,
     upperLimit: 400,

@@ -10,8 +10,13 @@ Now that we have Cylon imported, we can start defining our robot
 
 Let's define the connections and devices:
 
-      connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
-      device: { name: 'mpl115a2', driver: 'mpl115a2' },
+      connections: {
+        arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+      },
+
+      devices: {
+        mpl115a2: { driver: 'mpl115a2' }
+      },
 
 Now that Cylon knows about the necessary hardware we're going to be using, we'll
 tell it what work we want to do:

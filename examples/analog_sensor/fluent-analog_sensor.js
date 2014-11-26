@@ -2,8 +2,8 @@ var Cylon = require('cylon');
 
 Cylon
   .robot()
-  .connection({ name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' })
-  .device({ name: 'sensor', driver: 'analogSensor', pin: 0, upperLimit: 900, lowerLimit: 100 })
+  .connection('arduino', { adaptor: 'firmata', port: '/dev/ttyACM0' })
+  .device('sensor', { driver: 'analogSensor', pin: 0, upperLimit: 900, lowerLimit: 100 })
   .on('ready', function(bot) {
     bot.sensor.on('analogRead', function(val) {
       console.log('analog read value:', val);

@@ -1,14 +1,12 @@
 var Cylon = require('cylon');
 
 Cylon.robot({
-  connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+  connections: {
+    arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+  },
 
-  device: {
-    name: 'sensor',
-    driver: 'analogSensor',
-    pin: 0,
-    upperLimit: 900,
-    lowerLimit: 100
+  devices: {
+    sensor: { driver: 'analogSensor', pin: 0, upperLimit: 900, lowerLimit: 100 }
   },
 
   work: function(my) {

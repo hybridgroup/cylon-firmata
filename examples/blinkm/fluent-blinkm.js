@@ -1,8 +1,8 @@
 var Cylon = require('cylon');
 
 Cylon.robot()
-  .connection({ name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' })
-  .device({ name: 'blinkm', driver: 'blinkm' })
+  .connection('arduino', { adaptor: 'firmata', port: '/dev/ttyACM0' })
+  .device('blinkm', { driver: 'blinkm' })
   .on('ready', function(bot) {
     bot.blinkm.stopScript();
 

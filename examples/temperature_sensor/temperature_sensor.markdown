@@ -16,11 +16,15 @@ Now that we have Cylon imported, we can start defining our robot
 
 Let's define the connection to our Arduino:
 
-    connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/cu.usbmodem1451' },
+    connections: {
+      arduino: { adaptor: 'firmata', port: '/dev/cu.usbmodem1451' }
+    },
 
 Now we can define the analog sensor we're going to use (TMP36)
 
-    device: { name: 'sensor', driver: 'analogSensor', pin: 0, },
+    devices: {
+      sensor: { driver: 'analogSensor', pin: 0 }
+    },
 
 Now that Cylon knows about the necessary hardware we're going to be using,
 we read from sensor and calculate temperature every 5 seconds:

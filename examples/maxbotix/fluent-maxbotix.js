@@ -2,8 +2,8 @@ var Cylon = require('cylon');
 
 Cylon
   .robot()
-  .connection({ name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' })
-  .device({ name: 'maxbotix', driver: 'maxbotix' })
+  .connection('arduino', { adaptor: 'firmata', port: '/dev/ttyACM0' })
+  .device('maxbotix', { driver: 'maxbotix' })
   .on('ready', function(bot) {
     setInterval(function() {
       bot.maxbotix.range(function(err, data) {

@@ -13,12 +13,16 @@ With Cylon loaded, we can now define our basic robot.
 
 Our robot has one connection, to an Arduino using the `cylon-firmata` adaptor:
 
-      connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+      connections: {
+        arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+      },
 
 Our robot also only has one device (or at least only one we're concerned about),
 an LED on pin 13.
 
-      device: { name: 'led', driver: 'led', pin: 13 },
+      devices: {
+        led: { driver: 'led', pin: 13 }
+      },
 
 Next, we'll define the robot's work, which will be toggling the LED every
 second:

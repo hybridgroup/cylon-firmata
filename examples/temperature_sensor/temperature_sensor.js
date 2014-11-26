@@ -1,10 +1,14 @@
 var Cylon = require("cylon");
 
-var robot = Cylon.robot({
+Cylon.robot({
+  connections: {
+    arduino: { adaptor: 'firmata', port: '/dev/cu.usbmodem1451' }
+  },
 
-  connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/cu.usbmodem1451' },
   // For this example we are using TMP36 sensor
-  device:     { name: 'sensor', driver: 'analogSensor', pin: 0 },
+  devices: {
+    sensor: { driver: 'analogSensor', pin: 0 }
+  },
 
   work: function(my) {
     var analogValue = 0,
@@ -20,6 +24,4 @@ var robot = Cylon.robot({
     });
 
   }
-});
-
-robot.start();
+}).start();

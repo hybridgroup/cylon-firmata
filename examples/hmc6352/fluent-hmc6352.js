@@ -2,8 +2,8 @@ var Cylon = require('cylon');
 
 Cylon
   .robot()
-  .connection({ name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' })
-  .device({ name: 'hmc6352', driver: 'hmc6352' })
+  .connection('arduino', { adaptor: 'firmata', port: '/dev/ttyACM0' })
+  .device('hmc6352', { driver: 'hmc6352' })
   .on('ready', function(bot) {
     setInterval(function() {
       bot.hmc6352.heading(function(err, data) {

@@ -2,8 +2,8 @@ var Cylon = require('cylon');
 
 Cylon
   .robot()
-  .connection({ name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' })
-  .device({ name: 'motor', driver: 'motor', pin: 3 })
+  .connection('arduino', { adaptor: 'firmata', port: '/dev/ttyACM0' })
+  .device('motor', { driver: 'motor', pin: 3 })
   .on('ready', function(bot) {
     var speed = 0,
     increment = 5;

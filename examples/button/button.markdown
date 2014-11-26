@@ -17,7 +17,9 @@ Now that we have Cylon imported, let's start making our robot:
 Our robot will have a connection to an Arduino, and communicate with it via the
 Firmata protocol:
 
-      connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+      connections: {
+        arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+      },
 
 This time, our robot will have two devices, an LED and a button:
 

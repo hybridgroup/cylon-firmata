@@ -1,8 +1,9 @@
 var Cylon = require('cylon');
 
-Cylon.robot()
-  .connection({ name: 'raspi', adaptor: 'raspi' })
-  .device({ name: 'bmp180', driver: 'bmp180' })
+Cylon
+  .robot()
+  .connection('arduino', { adaptor: 'firmata', port: '/dev/ttyACM0' })
+  .device('bmp180', { driver: 'bmp180' })
   .on('ready', function(bot) {
     bot.bmp180.getTemperature(function(err, val) {
       if(err) {

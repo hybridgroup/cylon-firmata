@@ -1,8 +1,13 @@
 var Cylon = require('cylon');
 
 Cylon.robot({
-  connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
-  device: { name: 'maxbotix', driver: 'maxbotix' },
+  connections: {
+    arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+  },
+
+  devices: {
+    maxbotix: { driver: 'maxbotix' }
+  },
 
   work: function(my) {
     every((1).seconds(), function() {

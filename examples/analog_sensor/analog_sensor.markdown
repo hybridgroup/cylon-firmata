@@ -16,17 +16,20 @@ Now that we have Cylon imported, we can start defining our robot
 
 Let's define the connection to our Arduino:
 
-      connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+      connections: {
+        arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+      },
 
 Now we can define the analog sensor we're going to use, along with it's upper
 and lower limits:
 
-      device: {
-        name: 'sensor',
-        driver: 'analogSensor',
-        pin: 0,
-        upperLimit: 900,
-        lowerLimit: 100
+      devices: {
+        sensor: {
+          driver: 'analogSensor',
+          pin: 0,
+          upperLimit: 900,
+          lowerLimit: 100
+        }
       },
 
 Now that Cylon knows about the necessary hardware we're going to be using, we'll

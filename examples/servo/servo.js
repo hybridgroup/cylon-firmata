@@ -1,13 +1,16 @@
 var Cylon = require('cylon');
 
 Cylon.robot({
-  connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+  connections: {
+    adaptor: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+  },
 
-  device: {
-    name: 'servo',
-    driver: 'servo',
-    pin: 3,
-    limits: { bottom: 20, top: 160 }
+  devices: {
+    servo: {
+      driver: 'servo',
+      pin: 3,
+      limits: { bottom: 20, top: 160 }
+    }
   },
 
   work: function(my) {

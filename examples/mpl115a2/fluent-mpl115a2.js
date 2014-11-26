@@ -2,8 +2,8 @@ var Cylon = require('cylon');
 
 Cylon
   .robot()
-  .connection({ name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' })
-  .device({ name: 'mpl115a2', driver: 'mpl115a2' })
+  .connection('arduino', { adaptor: 'firmata', port: '/dev/ttyACM0' })
+  .device('mpl115a2', { driver: 'mpl115a2' })
   .on('ready', function(bot) {
     bot.mpl115a2.getTemperature(function(err, data) {
       var temp = data['temperature'],

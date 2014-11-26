@@ -16,8 +16,13 @@ We'll be using an Arduino, and communicating over the Firmata protocol. As well,
 we'll let our robot know about the LED we'll be modifying, on pin #3 of the
 Arduino.
 
-      connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
-      device: { name: 'led', driver: 'led', pin: 3 },
+      connections: {
+        arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+      },
+
+      devices: {
+        led: { driver: 'led', pin: 3 }
+      },
 
 Next up, we'll define our robot's work:
 

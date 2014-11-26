@@ -17,8 +17,13 @@ Now we can start defining our robot:
 We'll be connecting to an Ardunio, using the Firmata protocol, and a motor
 attached to the Arduino on pin 3.
 
-      connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
-      device: { name: 'motor', driver: 'motor', pin: 3 },
+      connections: {
+        arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+      },
+
+      devices: {
+        motor: { driver: 'motor', pin: 3 }
+      },
 
 We'll start defining the work for our robot next:
 

@@ -15,11 +15,15 @@ With Cylon imported, we can start defining our robot.
 
 Our robot will be using an Arduino, and communicating over the Firmata protocol
 
-      connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+      connections: {
+        arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+      },
 
 And we'll have one device, a BlinkM led.
 
-      device: { name: 'blinkm', driver: 'blinkm' },
+      devices: {
+        blinkm: { driver: 'blinkm' }
+      },
 
 We'll now set up our robot's work.
 
