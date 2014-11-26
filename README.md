@@ -1,122 +1,73 @@
-# Cylon.js For Firmata
+# Cylon.js for Firmata
 
 Cylon.js (http://cylonjs.com) is a JavaScript framework for robotics and physical computing using Node.js
 
-This module provides an adaptor for microcontrollers such as Arduino that support the Firmata protocol (http://firmata.org/wiki/Main_Page). It uses the Firmata node module (https://github.com/jgautier/firmata) created by [@jgautier](https://github.com/jgautier) thank you!
+This module provides an adaptor for microcontrollers such as the Arduino that support the [Firmata protocol][Firmata].
+This is possible thanks to the [`firmata` module](https://github.com/jgautier/firmata).
+
+[Firmata]: http://firmata.org/wiki/Main_Page
 
 Want to use Ruby on robots? Check out our sister project Artoo (http://artoo.io)
 
 Want to use the Go programming language to power your robots? Check out our sister project Gobot (http://gobot.io).
 
-[![Build Status](https://secure.travis-ci.org/hybridgroup/cylon-firmata.png?branch=master)](http://travis-ci.org/hybridgroup/cylon-firmata) [![Code Climate](https://codeclimate.com/github/hybridgroup/cylon-firmata/badges/gpa.svg)](https://codeclimate.com/github/hybridgroup/cylon-firmata) [![Test Coverage](https://codeclimate.com/github/hybridgroup/cylon-firmata/badges/coverage.svg)](https://codeclimate.com/github/hybridgroup/cylon-firmata)
-
 ## Getting Started
-Install the module with: `npm install cylon-firmata`
 
-## Example
+To get started, just install the NPM module:
+
+    $ npm install cylon-firmata
+
+Next, we need to get Firmata onto your microcontroller.
+This section assumes you're using an Arduino Uno or another compatible board, and a UNIX operating system (OS X or Linux).
+If you already have the Firmata sketch installed, you can skip straight to the examples.
+
+To get our Arduino set up, we'll be using [Gort][], a CLI tool for working with robotics hardware.
+
+First, we need to find the serial port of your Arduino.
+Plug it into your computer via USB.
+
+Once it's connected, use Gort's 'scan' command to find what serial port it's using:
+
+    $ gort scan serial
+
+On Linux, the port should follow the path `/dev/ttyACM0` or something similar.
+On OS X, you should see something like `/dev/tty.usbmodem1411`.
+
+With our port found, we'll install `avrdude`, the utility that lets us upload sketches to the Arduino.
+Gort has a shortcut for installing it:
+
+    $ gort arduino install
+
+Once `avrdude` is installed, we can tell Gort to use it to upload Firmata to our Arduino via the serialport we found earlier:
+
+    $ gort arduino upload ttyACM0
+
+And now you should be ready to connect and control the Arduino over the serial port.
+
+## Examples
+
+This quick example blinks an LED connected to an Arduino once per second:
 
 ```javascript
 var Cylon = require('cylon');
 
-// Initialize the robot
 Cylon.robot({
-  connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+  connections: {
+    arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+  },
+
   devices: {
-    led: { driver: 'led', pin: 13 },
-    button: { driver: 'button', pin: 2 }
+    led: { driver: 'led', pin: 13 }
   },
 
   work: function(my) {
-    my.button.on('push', function() {my.led.toggle()});
+    every((1).second(), my.led.toggle);
   }
 }).start();
 ```
 
-## Connecting to Arduino
-
-### OSX
-
-The main steps are:
-- Install the cylon-firmata npm module
-- Find out what serial port your arduino is connected to
-- Upload the Firmata protocol to the arduino
-- Connect to the device using Cylon
-
-First plug the Arduino into your computer via the USB/serial port. A dialog box will appear telling you that a new network interface has been detected. Click "Network Preferences...", and when it opens, simply click "Apply".
-
-Install the cylon-firmata module:
-
-```
-$ npm install cylon-firmata
-```
-
-Once plugged in, use the `cylon scan serial` command to find out your connection info and serial port address:
-
-```
-$ cylon scan serial
-```
-
-Use the `cylon firmata install` command to install avrdude,
-this will allow you to upload firmata to the arduino:
-
-```
-$ cylon firmata install
-```
-
-Once the avrdude uploader is installed we upload the firmata protocol to
-the arduino, use the arduino serial port address found when you ran
-`cylon scan serial`, or leave it blank to use the default address `/dev/ttyACM0`:
-
-```
-$ cylon firmata upload /dev/ttyACM0
-```
-
-Now you are ready to connect and communicate with the Arduino using serial port connection
-
-### Ubuntu
-
-The main steps are:
-- Install the cylon-firmata npm module
-- Find out what serial port your arduino is connected to
-- Upload the Firmata protocol to the arduino
-- Connect to the device using Cylon
-
-First plug the Arduino into your computer via the USB/serial port.
-
-Install the cylon-firmata module:
-
-```
-$ npm install cylon-firmata
-```
-
-Once plugged in, use the `cylon scan serial` command to find out your connection info and serial port address:
-
-```
-$ cylon scan serial
-```
-
-Use the `cylon firmata install` command to install avrdude,
-this will allow you to upload firmata to the arduino:
-
-```
-$ cylon firmata install
-```
-
-Once the avrdude uploader is installed we upload the firmata protocol to
-the arduino, use the arduino serial port address found when you ran
-`cylon scan serial`, or leave it blank to use the default address `ttyACM0`:
-
-```
-$ cylon firmata upload ttyACM0
-```
-
-Now you are ready to connect and communicate with the Arduino using serial port connection
-
-### Windows
-
-We are currently working on docs and instructions for Windows. Please check back soon!
-
 ## Documentation
+
 We're busy adding documentation to our web site at http://cylonjs.com/ please check there as we continue to work on Cylon.js
 
 Thank you!
@@ -184,4 +135,5 @@ Version 0.2.0 - Add support for PWM and servo commands, and refactor to use Base
 Version 0.1.0 - Initial release with support for digital read/write and analog read/write
 
 ## License
+
 Copyright (c) 2013-2014 The Hybrid Group. Licensed under the Apache 2.0 license.
