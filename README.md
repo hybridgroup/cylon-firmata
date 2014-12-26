@@ -11,40 +11,13 @@ Want to use Ruby on robots? Check out our sister project Artoo (http://artoo.io)
 
 Want to use the Go programming language to power your robots? Check out our sister project Gobot (http://gobot.io).
 
-## Getting Started
+## How to Install
 
 To get started, just install the NPM module:
 
     $ npm install cylon-firmata
 
-Next, we need to get Firmata onto your microcontroller.
-This section assumes you're using an Arduino Uno or another compatible board, and a UNIX operating system (OS X or Linux).
-If you already have the Firmata sketch installed, you can skip straight to the examples.
-
-To get our Arduino set up, we'll be using [Gort][], a CLI tool for working with robotics hardware.
-
-First, we need to find the serial port of your Arduino.
-Plug it into your computer via USB.
-
-Once it's connected, use Gort's 'scan' command to find what serial port it's using:
-
-    $ gort scan serial
-
-On Linux, the port should follow the path `/dev/ttyACM0` or something similar.
-On OS X, you should see something like `/dev/tty.usbmodem1411`.
-
-With our port found, we'll install `avrdude`, the utility that lets us upload sketches to the Arduino.
-Gort has a shortcut for installing it:
-
-    $ gort arduino install
-
-Once `avrdude` is installed, we can tell Gort to use it to upload Firmata to our Arduino via the serialport we found earlier:
-
-    $ gort arduino upload ttyACM0
-
-And now you should be ready to connect and control the Arduino over the serial port.
-
-## Examples
+## How to Use
 
 This quick example blinks an LED connected to an Arduino once per second:
 
@@ -65,6 +38,58 @@ Cylon.robot({
   }
 }).start();
 ```
+
+## How to Connect
+
+### Upload the Firmata Firmware to the Arduino
+
+This section assumes you're using an Arduino Uno or another compatible board, and a UNIX operating system (OS X or Linux). If you already have the Firmata sketch installed, you can skip straight to the examples.
+
+### OS X
+
+First plug the Arduino into your computer via the USB/serial port.
+A dialog box will appear telling you that a new network interface has been detected.
+Click "Network Preferences...", and when it opens, simply click "Apply".
+
+Install the cylon-firmata module:
+
+    $ npm install cylon-firmata
+
+Once plugged in, use [Gort](http://gort.io)'s `gort scan serial` command to find out your connection info and serial port address:
+
+    $ gort scan serial
+
+Use the `gort firmata install` command to install `avrdude`, this will allow you to upload firmata to the arduino:
+
+    $ gort firmata install
+
+Once the avrdude uploader is installed we upload the firmata protocol to the arduino, use the arduino serial port address found when you ran `gort scan serial`:
+
+    $ gort firmata upload /dev/tty.usbmodem1421
+
+Now you are ready to connect and communicate with the Arduino using serial port connection
+
+### Ubuntu
+
+First plug the Arduino into your computer via the USB/serial port.
+
+Install the cylon-firmata module:
+
+    $ npm install cylon-firmata
+
+Once plugged in, use [Gort](http://gort.io)'s `gort scan serial` command to find out your connection info and serial port address:
+
+    $ gort scan serial
+
+Use the `gort firmata install` command to install `avrdude`, this will allow you to upload firmata to the arduino:
+
+    $ gort firmata install
+
+Once the avrdude uploader is installed we upload the firmata protocol to the arduino, use the arduino serial port address found when you ran `gort scan serial`, or leave it blank to use the default address `ttyACM0`:
+
+    $ gort firmata upload ttyACM0
+
+Now you are ready to connect and communicate with the Arduino using serial port connection
 
 ## Documentation
 
