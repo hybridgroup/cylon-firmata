@@ -41,12 +41,7 @@ Cylon.robot({
 
 ## How to Connect
 
-The main steps are:
-
-- Install the cylon-firmata npm module
-- Find out what serial port your arduino is connected to
-- Upload the Firmata protocol to the arduino
-- Connect to the device using Cylon
+### Upload the Firmata Firmware to the Arduino
 
 This section assumes you're using an Arduino Uno or another compatible board, and a UNIX operating system (OS X or Linux). If you already have the Firmata sketch installed, you can skip straight to the examples.
 
