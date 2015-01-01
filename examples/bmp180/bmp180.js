@@ -1,12 +1,14 @@
-var Cylon = require('cylon');
+"use strict";
+
+var Cylon = require("cylon");
 
 Cylon.robot({
   connections: {
-    arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+    arduino: { adaptor: "firmata", port: "/dev/ttyACM0" }
   },
 
   devices: {
-    bmp180: { driver: 'bmp180' }
+    bmp180: { driver: "bmp180" }
   },
 
   work: function(my) {

@@ -1,9 +1,11 @@
-var Cylon = require('cylon');
+"use strict";
+
+var Cylon = require("cylon");
 
 Cylon.robot()
-  .connection('arduino', { adaptor: 'firmata', port: '/dev/ttyACM0' })
-  .device('blinkm', { driver: 'blinkm' })
-  .on('ready', function(bot) {
+  .connection("arduino", { adaptor: "firmata", port: "/dev/ttyACM0" })
+  .device("blinkm", { driver: "blinkm" })
+  .on("ready", function(bot) {
     bot.blinkm.stopScript();
 
     bot.blinkm.getFirmware(function(err, version) {

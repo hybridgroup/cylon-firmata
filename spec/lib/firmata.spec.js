@@ -1,11 +1,12 @@
-'use strict';
+/* jshint expr:true */
+"use strict";
 
-var Cylon = require('cylon');
-var LibFirmata = require('firmata');
+var Cylon = require("cylon");
+var LibFirmata = require("firmata");
 
-var Firmata = source('firmata');
+var Firmata = source("firmata");
 
-describe('Cylon.Adaptors.Firmata', function() {
+describe("Cylon.Adaptors.Firmata", function() {
   var firmata;
 
   beforeEach(function() {
@@ -15,9 +16,9 @@ describe('Cylon.Adaptors.Firmata', function() {
     });
   });
 
-  it('should inherit from Cylon.Adaptor', function(){
+  it("should inherit from Cylon.Adaptor", function(){
     expect(firmata).to.be.an.instanceOf(Cylon.Adaptor);
-  })
+  });
 
   describe("constructor", function() {
     it("sets @board to an empty string by default", function() {
@@ -30,8 +31,10 @@ describe('Cylon.Adaptors.Firmata', function() {
 
     context("if no pin is specified", function() {
       it("throws an error", function() {
-        var fn = function() { new Firmata({ name: 'hi' }); };
-        expect(fn).to.throw("No port specified for Firmata adaptor. Cannot proceed");
+        var fn = function() { return new Firmata({ name: "hi" }); };
+        expect(fn).to.throw(
+          "No port specified for Firmata adaptor. Cannot proceed"
+        );
       });
     });
   });
@@ -40,10 +43,10 @@ describe('Cylon.Adaptors.Firmata', function() {
     it("returns an array of Firmata command names", function() {
       var commands = firmata.commands;
 
-      expect(commands).to.be.a('array');
+      expect(commands).to.be.a("array");
 
       for (var i = 0; i < commands.length; i++) {
-        expect(commands[i]).to.be.a('string');
+        expect(commands[i]).to.be.a("string");
       }
     });
   });
@@ -54,9 +57,9 @@ describe('Cylon.Adaptors.Firmata', function() {
     beforeEach(function() {
       callback = spy();
 
-      stub(LibFirmata, 'Board').callsArg(1);
-      stub(firmata, 'proxyMethods');
-      stub(firmata, 'emit');
+      stub(LibFirmata, "Board").callsArg(1);
+      stub(firmata, "proxyMethods");
+      stub(firmata, "emit");
 
       firmata.connect(callback);
     });
@@ -76,7 +79,7 @@ describe('Cylon.Adaptors.Firmata', function() {
     });
 
     it("emits 'connect' when the board is connected", function() {
-      expect(firmata.emit).to.be.calledWith('connect');
+      expect(firmata.emit).to.be.calledWith("connect");
     });
 
     it("proxies methods from the board to the adaptor instance", function() {
@@ -116,14 +119,14 @@ describe('Cylon.Adaptors.Firmata', function() {
       firmata.board = {
         pinMode: spy(),
         digitalRead: stub().callsArgWith(1, 1),
-        MODES: { INPUT: 'r' }
+        MODES: { INPUT: "r" }
       };
 
       firmata.digitalRead(4, callback);
     });
 
     it("sets the pin mode on the board to input", function() {
-      expect(firmata.board.pinMode).to.be.calledWith(4, 'r');
+      expect(firmata.board.pinMode).to.be.calledWith(4, "r");
     });
 
     it("uses #digitalRead to get the value from the pin", function() {
@@ -137,14 +140,14 @@ describe('Cylon.Adaptors.Firmata', function() {
       firmata.board = {
         pinMode: spy(),
         digitalWrite: spy(),
-        MODES: { OUTPUT: 'w' }
+        MODES: { OUTPUT: "w" }
       };
 
       firmata.digitalWrite(4, 1);
     });
 
     it("sets the pin mode on the board to output", function() {
-      expect(firmata.board.pinMode).to.be.calledWith(4, 'w');
+      expect(firmata.board.pinMode).to.be.calledWith(4, "w");
     });
 
     it("uses #digitalWrite to write the value to the pin", function() {
@@ -172,15 +175,15 @@ describe('Cylon.Adaptors.Firmata', function() {
       firmata.board = {
         pinMode: spy(),
         analogWrite: spy(),
-        analogPins: { 'a4': 4 },
+        analogPins: { "a4": 4 },
         MODES: { ANALOG: "a" }
       };
 
-      firmata.analogWrite('a4', 0.5);
+      firmata.analogWrite("a4", 0.5);
     });
 
     it("sets the pin mode on the board to analog", function() {
-      expect(firmata.board.pinMode).to.be.calledWith(4, 'a');
+      expect(firmata.board.pinMode).to.be.calledWith(4, "a");
     });
 
     it("uses #analogWrite to write the value to the pin", function() {
@@ -193,14 +196,14 @@ describe('Cylon.Adaptors.Firmata', function() {
       firmata.board = {
         pinMode: spy(),
         analogWrite: spy(),
-        MODES: { PWM: 'p' }
+        MODES: { PWM: "p" }
       };
 
       firmata.pwmWrite(4 , 0.5);
     });
 
     it("sets the pin mode on the board to pwm", function() {
-      expect(firmata.board.pinMode).to.be.calledWith(4, 'p');
+      expect(firmata.board.pinMode).to.be.calledWith(4, "p");
     });
 
     it("uses #analogWrite to write the value to the pin", function() {
@@ -213,14 +216,14 @@ describe('Cylon.Adaptors.Firmata', function() {
       firmata.board = {
         pinMode: spy(),
         servoWrite: spy(),
-        MODES: { SERVO: 's' }
+        MODES: { SERVO: "s" }
       };
 
       firmata.servoWrite(4, 0.5);
     });
 
     it("sets the pin mode on the board to servo", function() {
-      expect(firmata.board.pinMode).to.be.calledWith(4, 's');
+      expect(firmata.board.pinMode).to.be.calledWith(4, "s");
     });
 
     it("uses #analogWrite to write the value to the pin", function() {
@@ -236,7 +239,7 @@ describe('Cylon.Adaptors.Firmata', function() {
 
       firmata.board = { sendI2CWriteRequest: spy() };
 
-      stub(firmata, 'i2cConfig');
+      stub(firmata, "i2cConfig");
     });
 
     afterEach(function() {
@@ -246,7 +249,7 @@ describe('Cylon.Adaptors.Firmata', function() {
     context("when the board is configured up for i2c", function() {
       beforeEach(function() {
         firmata.i2cReady = true;
-        firmata.i2cWrite('address', 'command', 'buffer', callback);
+        firmata.i2cWrite("address", "command", "buffer", callback);
       });
 
       it("doesn't call #i2cConfig", function() {
@@ -255,8 +258,8 @@ describe('Cylon.Adaptors.Firmata', function() {
 
       it("sends a write request with #sendI2CWriteRequest", function() {
         expect(firmata.board.sendI2CWriteRequest).to.be.calledWith(
-          'address',
-          ['command', 'buffer']
+          "address",
+          ["command", "buffer"]
         );
       });
 
@@ -268,7 +271,7 @@ describe('Cylon.Adaptors.Firmata', function() {
     context("when the board is not configured up for i2c", function() {
       beforeEach(function() {
         firmata.i2cReady = false;
-        firmata.i2cWrite('address', 'command', 'buffer', callback)
+        firmata.i2cWrite("address", "command", "buffer", callback);
       });
 
       it("calls #i2cConfig", function() {
@@ -287,7 +290,7 @@ describe('Cylon.Adaptors.Firmata', function() {
         sendI2CReadRequest: stub()
       };
 
-      stub(firmata, 'i2cConfig');
+      stub(firmata, "i2cConfig");
     });
 
     afterEach(function() {
@@ -297,7 +300,7 @@ describe('Cylon.Adaptors.Firmata', function() {
     context("When the board is configured for i2c", function() {
       beforeEach(function() {
         firmata.i2cReady = true;
-        firmata.i2cRead('address', 'command', 10, callback);
+        firmata.i2cRead("address", "command", 10, callback);
       });
 
       it("calls #sendI2CWriteRequest", function() {
@@ -310,23 +313,23 @@ describe('Cylon.Adaptors.Firmata', function() {
 
       context("when an error occurs", function() {
         beforeEach(function() {
-          firmata.board.sendI2CReadRequest.callsArgWith(2, { name: 'Data' });
-          firmata.i2cRead('address', 'command', 10, callback);
+          firmata.board.sendI2CReadRequest.callsArgWith(2, { name: "Data" });
+          firmata.i2cRead("address", "command", 10, callback);
         });
 
         it("calls the callback with an error and no data", function() {
-          expect(callback).to.be.calledWith(null, { name: 'Data' });
+          expect(callback).to.be.calledWith(null, { name: "Data" });
         });
       });
 
       context("when data is returned", function() {
         beforeEach(function() {
-          firmata.board.sendI2CReadRequest.callsArgWith(2, { name: 'Error' });
-          firmata.i2cRead('address', 'command', 10, callback);
+          firmata.board.sendI2CReadRequest.callsArgWith(2, { name: "Error" });
+          firmata.i2cRead("address", "command", 10, callback);
         });
 
         it("calls the callback with no error, and the data", function() {
-          expect(callback).to.be.calledWith({ name: 'Error' }, null);
+          expect(callback).to.be.calledWith({ name: "Error" }, null);
         });
       });
     });
@@ -334,13 +337,13 @@ describe('Cylon.Adaptors.Firmata', function() {
     context("When the board is not configured for i2c", function() {
       beforeEach(function() {
         firmata.i2cReady = false;
-        firmata.i2cRead('address', 'command', 10, callback)
+        firmata.i2cRead("address", "command", 10, callback);
       });
 
       it("calls #i2cConfig, telling it to delay for 2000ms", function() {
         expect(firmata.i2cConfig).to.be.calledWith(2000);
       });
-    })
+    });
   });
 
   describe("#i2cConfig", function() {

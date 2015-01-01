@@ -1,10 +1,12 @@
-var Cylon = require('cylon');
+"use strict";
+
+var Cylon = require("cylon");
 
 Cylon
   .robot()
-  .connection('arduino', { adaptor: 'firmata', port: '/dev/ttyACM0' })
-  .device('bmp180', { driver: 'bmp180' })
-  .on('ready', function(bot) {
+  .connection("arduino", { adaptor: "firmata", port: "/dev/ttyACM0" })
+  .device("bmp180", { driver: "bmp180" })
+  .on("ready", function(bot) {
     bot.bmp180.getTemperature(function(err, val) {
       if(err) {
         console.log(err);

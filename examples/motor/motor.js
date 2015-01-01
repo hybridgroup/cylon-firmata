@@ -1,19 +1,21 @@
-var Cylon = require('cylon');
+"use strict";
+
+var Cylon = require("cylon");
 
 Cylon.robot({
   connections: {
-    arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+    arduino: { adaptor: "firmata", port: "/dev/ttyACM0" }
   },
 
   devices: {
-    motor: { driver: 'motor', pin: 3 }
+    motor: { driver: "motor", pin: 3 }
   },
 
   work: function(my) {
     var speed = 0,
         increment = 5;
 
-    every(0.05.seconds(), function() {
+    every((0.05).seconds(), function() {
       speed += increment;
       my.motor.speed(speed);
 

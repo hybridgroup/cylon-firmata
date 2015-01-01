@@ -1,13 +1,15 @@
+"use strict";
+
 var Cylon = require("cylon");
 
 Cylon.robot({
   connections: {
-    arduino: { adaptor: 'firmata', port: '/dev/cu.usbmodem1451' }
+    arduino: { adaptor: "firmata", port: "/dev/cu.usbmodem1451" }
   },
 
   // For this example we are using TMP36 sensor
   devices: {
-    sensor: { driver: 'analogSensor', pin: 0 }
+    sensor: { driver: "analogSensor", pin: 0 }
   },
 
   work: function(my) {
@@ -20,7 +22,7 @@ Cylon.robot({
       voltage     = (analogValue * 5.0) / 1024;
       temperature = (voltage - 0.5) * 100;
 
-      console.log('Current Temperature => ', temperature);
+      console.log("Current Temperature => ", temperature);
     });
 
   }

@@ -1,25 +1,26 @@
-'use strict';
+/* jshint expr:true */
+"use strict";
 
-var Adaptor = source('firmata');
+var Adaptor = source("firmata");
 
-var module = source('cylon-firmata');
+var firmata = source("cylon-firmata");
 
-describe('cylon-firmata', function() {
+describe("cylon-firmata", function() {
   describe("#adaptors", function() {
-    it('is an array of supplied adaptors', function() {
-      expect(module.adaptors).to.be.eql(['firmata']);
+    it("is an array of supplied adaptors", function() {
+      expect(firmata.adaptors).to.be.eql(["firmata"]);
     });
   });
 
   describe("#dependencies", function() {
-    it('is an array of supplied dependencies', function() {
-      expect(module.dependencies).to.be.eql(['cylon-gpio', 'cylon-i2c']);
+    it("is an array of supplied dependencies", function() {
+      expect(firmata.dependencies).to.be.eql(["cylon-gpio", "cylon-i2c"]);
     });
   });
 
   describe("#adaptor", function() {
     it("returns a new adaptor instance", function() {
-      expect(module.adaptor({port: ''})).to.be.an.instanceOf(Adaptor);
+      expect(firmata.adaptor({port: ""})).to.be.an.instanceOf(Adaptor);
     });
   });
 });
