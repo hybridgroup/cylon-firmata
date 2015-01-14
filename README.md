@@ -113,6 +113,8 @@ Thank you!
 
 ## Release History
 
+Version 0.19.0 - Compatibility with Cylon 0.22.0
+
 Version 0.18.0 - Compatibility with Cylon 0.21.0
 
 Version 0.17.2 - Validate if cmd is an array in I2C requests.
