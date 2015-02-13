@@ -8,7 +8,7 @@ Cylon.robot({
   },
 
   devices: {
-    maxbotix: { driver: "maxbotix" }
+    maxbotix: { driver: "maxbotix", pin: 1 }
   },
 
   work: function(my) {
