@@ -15,7 +15,7 @@ Want to use the Go programming language to power your robots? Check out our sist
 
 To get started, just install the NPM module:
 
-    $ npm install cylon-firmata
+    $ npm install cylon cylon-firmata
 
 ## How to Use
 
@@ -53,7 +53,7 @@ Click "Network Preferences...", and when it opens, simply click "Apply".
 
 Install the cylon-firmata module:
 
-    $ npm install cylon-firmata
+    $ npm install cylon cylon-firmata
 
 Once plugged in, use [Gort](http://gort.io)'s `gort scan serial` command to find out your connection info and serial port address:
 
@@ -75,7 +75,7 @@ First plug the Arduino into your computer via the USB/serial port.
 
 Install the cylon-firmata module:
 
-    $ npm install cylon-firmata
+    $ npm install cylon cylon-firmata
 
 Once plugged in, use [Gort](http://gort.io)'s `gort scan serial` command to find out your connection info and serial port address:
 
