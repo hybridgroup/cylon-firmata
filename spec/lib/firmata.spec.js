@@ -131,7 +131,7 @@ describe("Cylon.Adaptors.Firmata", function() {
 
     it("uses #digitalRead to get the value from the pin", function() {
       expect(firmata.board.digitalRead).to.be.calledWith(4);
-      expect(callback).to.be.calledWith(null, 1);
+      expect(callback).to.be.calledWith(1, 4);
     });
   });
 
@@ -166,7 +166,7 @@ describe("Cylon.Adaptors.Firmata", function() {
 
     it("uses #analogRead to get the pin value", function() {
       expect(firmata.board.analogRead).to.be.calledWith(4);
-      expect(callback).to.be.calledWith(null, 128);
+      expect(callback).to.be.calledWith(128, 4);
     });
   });
 
