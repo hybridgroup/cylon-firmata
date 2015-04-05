@@ -317,25 +317,22 @@ describe("Cylon.Adaptors.Firmata", function() {
           firmata.i2cRead("address", "command", 10, callback);
         });
 
-        it("calls the callback with an error and no data", function() {
+        it("calls the callback with no error, and the data", function() {
           expect(callback).to.be.calledWith(null, { name: "Data" });
         });
       });
 
       context("when data is returned", function() {
-        var listener;
-      
         beforeEach(function() {
-          listener = spy();
-
-          firmata.on("error", listener);
-
+          firmata.respond = stub();
           firmata.board.sendI2CReadRequest.callsArgWith(2, { name: "Error" });
           firmata.i2cRead("address", "command", 10, callback);
         });
 
-        it("calls the callback with no error, and the data", function() {
-          expect(callback).to.be.calledWith({ name: "Error" }, null);
+        it("calls the callback with an error and no data", function() {
+          expect(firmata.respond).to.be.calledWith(
+            "i2cRead", callback, { name: "Error" }, null
+          );
         });
       });
     });
