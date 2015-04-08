@@ -1,6 +1,6 @@
 {
   "name": "cylon-firmata",
-  "version": "0.19.0",
+  "version": "0.20.0",
   "main": "lib/cylon-firmata.js",
   "description": "Cylon module for Arduino and other microcontrollers using the Firmata protocol",
   "homepage": "http://cylonjs.com",
@@ -25,8 +25,8 @@
 
   "dependencies": {
     "firmata":    ">= 0.3.2",
-    "cylon":      "~0.22.0",
-    "cylon-gpio": "~0.22.0",
-    "cylon-i2c":  "~0.19.0"
+    "cylon":      "~1.0.0",
+    "cylon-gpio": "~0.23.0",
+    "cylon-i2c":  "~0.21.0"
   }
 }
