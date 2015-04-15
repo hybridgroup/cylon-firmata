@@ -39,18 +39,6 @@ describe("Cylon.Adaptors.Firmata", function() {
     });
   });
 
-  describe("#commands", function() {
-    it("returns an array of Firmata command names", function() {
-      var commands = firmata.commands;
-
-      expect(commands).to.be.a("array");
-
-      for (var i = 0; i < commands.length; i++) {
-        expect(commands[i]).to.be.a("string");
-      }
-    });
-  });
-
   describe("#connect", function() {
     var callback;
 
@@ -58,7 +46,6 @@ describe("Cylon.Adaptors.Firmata", function() {
       callback = spy();
 
       stub(LibFirmata, "Board").callsArg(1);
-      stub(firmata, "proxyMethods");
       stub(firmata, "emit");
 
       firmata.connect(callback);
@@ -80,14 +67,6 @@ describe("Cylon.Adaptors.Firmata", function() {
 
     it("emits 'connect' when the board is connected", function() {
       expect(firmata.emit).to.be.calledWith("connect");
-    });
-
-    it("proxies methods from the board to the adaptor instance", function() {
-      expect(firmata.proxyMethods).to.be.calledWith(
-        firmata.commands,
-        firmata.board,
-        firmata
-      );
     });
   });
 
