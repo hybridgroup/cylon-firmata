@@ -13,7 +13,7 @@ Cylon
     model: "gp2y0a41sk0f"
   })
   .on("ready", function(bot) {
-    setInterval(function(){
+    setInterval(function() {
       var range = bot.sensor.range();
       console.log("Range ===>", range);
     }, 1000);

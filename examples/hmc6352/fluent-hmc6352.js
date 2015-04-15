@@ -9,7 +9,7 @@ Cylon
   .on("ready", function(bot) {
     setInterval(function() {
       bot.hmc6352.heading(function(err, data) {
-        console.log("heading: " + data);
+        console.log(err || "heading: " + data);
       });
     }, 1000);
   });

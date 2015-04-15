@@ -21,7 +21,7 @@ Cylon.robot({
     var highest,
     lowest;
 
-    my.sensor.on("analogRead", function(val){
+    my.sensor.on("analogRead", function(val) {
       console.log("Analor Read Value ===>", val);
       if (highest === undefined) {
         highest = val;

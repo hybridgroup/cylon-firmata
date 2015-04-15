@@ -15,7 +15,7 @@ Cylon
 
     setInterval(function() {
       analogValue = bot.sensor.analogRead();
-      voltage     = (analogValue * 5.0) / 1024;
+      voltage = (analogValue * 5.0) / 1024;
       temperature = (voltage - 0.5) * 100;
 
       console.log("Current Temperature => ", temperature);

@@ -16,7 +16,7 @@ describe("Cylon.Adaptors.Firmata", function() {
     });
   });
 
-  it("should inherit from Cylon.Adaptor", function(){
+  it("should inherit from Cylon.Adaptor", function() {
     expect(firmata).to.be.an.instanceOf(Cylon.Adaptor);
   });
 
@@ -154,7 +154,7 @@ describe("Cylon.Adaptors.Firmata", function() {
       firmata.board = {
         pinMode: spy(),
         analogWrite: spy(),
-        analogPins: { "a4": 4 },
+        analogPins: { a4: 4 },
         MODES: { ANALOG: "a" }
       };
 
@@ -178,7 +178,7 @@ describe("Cylon.Adaptors.Firmata", function() {
         MODES: { PWM: "p" }
       };
 
-      firmata.pwmWrite(4 , 0.5);
+      firmata.pwmWrite(4, 0.5);
     });
 
     it("sets the pin mode on the board to pwm", function() {

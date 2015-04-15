@@ -16,7 +16,7 @@ Cylon
     var highest,
         lowest;
 
-    bot.sensor.on("analogRead", function(val){
+    bot.sensor.on("analogRead", function(val) {
       console.log("Analor Read Value ===>", val);
 
       if (highest === undefined) {

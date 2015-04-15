@@ -9,7 +9,7 @@ Cylon
   .on("ready", function(bot) {
     setInterval(function() {
       bot.maxbotix.range(function(err, data) {
-        console.log("range: " + data);
+        console.log(err || "range: " + data);
       });
     }, 1000);
   });

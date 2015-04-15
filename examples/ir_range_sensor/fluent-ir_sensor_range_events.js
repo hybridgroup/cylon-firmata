@@ -17,11 +17,11 @@ Cylon
     model: "gp2y0a41sk0f"
   })
   .on("ready", function(bot) {
-    bot.sensor.on("range", function(range){
+    bot.sensor.on("range", function(range) {
       console.log("Range in inches ===>", range);
     });
 
-    bot.sensor.on("rangeCm", function(range){
+    bot.sensor.on("rangeCm", function(range) {
       console.log("Range in cm ===>", range);
     });
   });

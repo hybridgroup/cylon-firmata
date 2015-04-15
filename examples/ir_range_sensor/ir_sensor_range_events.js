@@ -18,11 +18,11 @@ Cylon.robot({
   },
 
   work: function(my) {
-    my.sensor.on("range", function(range){
+    my.sensor.on("range", function(range) {
       console.log("Range in inches ===>", range);
     });
 
-    my.sensor.on("rangeCm", function(range){
+    my.sensor.on("rangeCm", function(range) {
       console.log("Range in cm ===>", range);
     });
   }

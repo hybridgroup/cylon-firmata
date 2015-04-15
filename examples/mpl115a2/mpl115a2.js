@@ -13,10 +13,15 @@ Cylon.robot({
 
   work: function(my) {
     my.mpl115a2.getTemperature(function(err, data) {
-      var temp = data["temperature"],
-          pressure = data["pressure"];
+      if (err) {
+        console.log(err);
+        return;
+      }
 
-      console.log("temperature " + temp  + " pressure " + pressure);
+      var temp = data.temperature,
+          pressure = data.pressure;
+
+      console.log("temperature " + temp + " pressure " + pressure);
     });
   }
 }).start();

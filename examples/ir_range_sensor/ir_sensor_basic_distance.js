@@ -18,7 +18,7 @@ Cylon.robot({
   },
 
   work: function(my) {
-    every((1).seconds(), function(){
+    every((1).seconds(), function() {
       var range = my.sensor.range();
       console.log("Range ===>", range);
     });

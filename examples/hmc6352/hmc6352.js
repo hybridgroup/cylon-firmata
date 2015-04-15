@@ -14,7 +14,7 @@ Cylon.robot({
   work: function(my) {
     every((1).second(), function() {
       my.hmc6352.heading(function(err, data) {
-        console.log("heading: " + data);
+        console.log(err || "heading: " + data);
       });
     });
   }

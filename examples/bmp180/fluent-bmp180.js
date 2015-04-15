@@ -8,10 +8,9 @@ Cylon
   .device("bmp180", { driver: "bmp180" })
   .on("ready", function(bot) {
     bot.bmp180.getTemperature(function(err, val) {
-      if(err) {
+      if (err) {
         console.log(err);
-      }
-      else {
+      } else {
         console.log("getTemperature call:");
         console.log("\tTemp: " + val.temp + " C");
       }
@@ -19,10 +18,9 @@ Cylon
 
     setTimeout(function() {
       bot.bmp180.getPressure(1, function(err, val) {
-        if(err) {
+        if (err) {
           console.log(err);
-        }
-        else {
+        } else {
           console.log("getPressure call:");
           console.log("\tTemperature: " + val.temp + " C");
           console.log("\tPressure: " + val.press + " Pa");
@@ -32,10 +30,9 @@ Cylon
 
     setTimeout(function() {
       bot.bmp180.getAltitude(1, null, function(err, val) {
-        if(err) {
+        if (err) {
           console.log(err);
-        }
-        else {
+        } else {
           console.log("getAltitude call:");
           console.log("\tTemperature: " + val.temp + " C");
           console.log("\tPressure: " + val.press + " Pa");
