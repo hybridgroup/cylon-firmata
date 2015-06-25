@@ -1,5 +1,7 @@
 ## Release History
 
+Version 0.21.0 - Correct issue with errors in board initialization
+
 Version 0.20.0 - Compatibility with Cylon 1.0.0
 
 Version 0.19.0 - Compatibility with Cylon 0.22.0
