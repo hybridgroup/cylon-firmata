@@ -3,7 +3,7 @@
 
 var Adaptor = source("firmata");
 
-var firmata = source("cylon-firmata");
+var firmata = source("../");
 
 describe("cylon-firmata", function() {
   describe("#adaptors", function() {
