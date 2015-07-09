@@ -113,9 +113,7 @@ When the installation is complete, close the command prompt window and open a ne
 
     $ gort scan serial
 
-Take note of your arduinos serialport address (COM1 | COM2 | COM3| etc).
-
-You need to already have installed the arduino drivers from [arduino.cc/en/Main/Software](https://www.arduino.cc/en/Main/Software). Finally upload the firmata protocol sketch to the arduino.
+Take note of your arduinos serialport address (COM1, COM2, COM3 etc). You need to already have installed the arduino drivers from [arduino.cc/en/Main/Software](https://www.arduino.cc/en/Main/Software). Finally upload the firmata protocol sketch to the arduino.
 
     $ gort arduino upload firmata <COMX>
 
