@@ -107,21 +107,17 @@ Open a command prompt window by right clicking on the start button and choose `C
 
 Once inside the gort folder, first install avrdude which we'll use to upload firmata to the arduino.
 
-```
-$ gort arduino install
-```
+    $ gort arduino install
 
 When the installation is complete, close the command prompt window and open a new one. We need to do this for the env variables to reload.
 
-```
-$ gort scan serial
-```
+    $ gort scan serial
 
-Take note of your arduinos serialport address (COM1 | COM2 | COM3| etc). You need to already have installed the arduino drivers from [arduino.cc/en/Main/Software](https://www.arduino.cc/en/Main/Software). Finally upload the firmata protocol sketch to the arduino.
+Take note of your arduinos serialport address (COM1 | COM2 | COM3| etc).
 
-```
-$ gort arduino upload firmata <COMX>
-```
+You need to already have installed the arduino drivers from [arduino.cc/en/Main/Software](https://www.arduino.cc/en/Main/Software). Finally upload the firmata protocol sketch to the arduino.
+
+    $ gort arduino upload firmata <COMX>
 
 Make sure to substitute `<COMX>` with the apropiate serialport address.
 
