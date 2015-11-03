@@ -38,7 +38,7 @@
   },
 
   "dependencies": {
-    "firmata":    ">= 0.3.2",
+    "firmata":    ">= 0.8.0",
     "cylon":      "^1.2.0",
     "cylon-gpio": "^0.27.0",
     "cylon-i2c":  "^0.23.0"

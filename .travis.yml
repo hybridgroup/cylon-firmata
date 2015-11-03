@@ -4,6 +4,7 @@ node_js:
   - '0.10'
   - '0.12'
   - 'iojs'
+  - '5.0.0'
 before_install:
   - "mkdir -p ~/.npm"
 install:
