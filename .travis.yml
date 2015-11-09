@@ -3,10 +3,12 @@ sudo: false
 node_js:
   - '0.10'
   - '0.12'
-  - 'iojs'
+  - '4.0.0'
   - '5.0.0'
 before_install:
   - "mkdir -p ~/.npm"
+env:
+  - CXX=g++-4.8
 install:
   - npm install
   - npm install git://github.com/hybridgroup/cylon.git
@@ -14,3 +16,10 @@ install:
 script:
   - make ci
   - CODECLIMATE_REPO_TOKEN=d3b389070bfb8bb0adb5c611228aa14d4e5414e871b78f1e03fc759135897157 codeclimate-test-reporter < coverage/lcov.info
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-4.8
+      - g++-4.8
