@@ -18,8 +18,6 @@ script:
   - CODECLIMATE_REPO_TOKEN=d3b389070bfb8bb0adb5c611228aa14d4e5414e871b78f1e03fc759135897157 codeclimate-test-reporter < coverage/lcov.info
 addons:
   apt:
-    sources:
-      - ubuntu-toolchain-r-test
     packages:
       - gcc-4.8
       - g++-4.8
