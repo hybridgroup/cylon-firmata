@@ -3,8 +3,10 @@ sudo: false
 node_js:
   - '0.10'
   - '0.12'
-  - '4.0.0'
-  - '5.0.0'
+  - '4.0'
+  - '4.1'
+  - '4.2'
+  - '5.0'
 before_install:
   - "mkdir -p ~/.npm"
 env:
