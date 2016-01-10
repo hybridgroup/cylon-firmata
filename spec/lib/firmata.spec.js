@@ -343,4 +343,139 @@ describe("Cylon.Adaptors.Firmata", function() {
       expect(firmata.i2cReady).to.be.eql(true);
     });
   });
+
+  describe("#sendOneWireConfig", function() {
+    beforeEach(function() {
+      firmata.board = { sendOneWireConfig: spy() };
+      firmata.sendOneWireConfig(2, true);
+    });
+
+    it("calls #sendOneWireConfig on the board with the provided params",
+      function() {
+        expect(firmata.board.sendOneWireConfig).to.be.calledWith(2, true);
+      });
+  });
+
+  describe("#sendOneWireSearch", function() {
+    var foundDevices = [[40, 234, 57, 176, 6, 0, 0, 207]],
+      callback;
+
+    beforeEach(function() {
+      callback = spy();
+
+      firmata.board = {
+        sendOneWireSearch: stub().callsArgWith(1, null, foundDevices)
+      };
+
+      firmata.sendOneWireSearch(2, callback);
+    });
+
+    it("calls #sendOneWireSearch on the board to search for devices",
+      function() {
+        expect(firmata.board.sendOneWireSearch).to.be.calledWith(2);
+        expect(callback).to.be.calledWith(null, foundDevices);
+      });
+  });
+
+  describe("#sendOneWireAlarmsSearch", function() {
+    var foundDevices = [[40, 234, 57, 176, 6, 0, 0, 207]],
+      callback;
+
+    beforeEach(function() {
+      callback = spy();
+
+      firmata.board = {
+        sendOneWireAlarmsSearch: stub().callsArgWith(1, null, foundDevices)
+      };
+
+      firmata.sendOneWireAlarmsSearch(2, callback);
+    });
+
+    it("calls #sendOneWireAlarmsSearch to search for alarmed devices",
+      function() {
+        expect(firmata.board.sendOneWireAlarmsSearch).to.be.calledWith(2);
+        expect(callback).to.be.calledWith(null, foundDevices);
+      });
+  });
+
+  describe("#sendOneWireRead", function() {
+    var data = [135, 1, 75, 70, 127, 255, 9, 16, 72],
+      callback;
+
+    beforeEach(function() {
+      callback = spy();
+
+      firmata.board = {
+        sendOneWireRead: stub().callsArgWith(3, null, data)
+      };
+
+      firmata.sendOneWireRead(2, [40, 234, 57, 176, 6, 0, 0, 207], 9,
+        callback);
+    });
+
+    it("calls #sendOneWireRead on the board", function() {
+      expect(firmata.board.sendOneWireRead)
+        .to.be.calledWith(2, [40, 234, 57, 176, 6, 0, 0, 207], 9);
+      expect(callback).to.be.calledWith(null, data);
+    });
+  });
+
+  describe("#sendOneWireReset", function() {
+    beforeEach(function() {
+      firmata.board = { sendOneWireReset: spy() };
+      firmata.sendOneWireReset(2);
+    });
+
+    it("calls #sendOneWireReset on the board with the provided params",
+      function() {
+        expect(firmata.board.sendOneWireReset).to.be.calledWith(2);
+      });
+  });
+
+  describe("#sendOneWireWrite", function() {
+    beforeEach(function() {
+      firmata.board = { sendOneWireWrite: spy() };
+      firmata.sendOneWireWrite(2, [40, 234, 57, 176, 6, 0, 0, 207], 0xBE);
+    });
+
+    it("calls #sendOneWireWrite on the board with the provided params",
+      function() {
+        expect(firmata.board.sendOneWireWrite)
+          .to.be.calledWith(2, [40, 234, 57, 176, 6, 0, 0, 207], 0xBE);
+      });
+  });
+
+  describe("#sendOneWireDelay", function() {
+    beforeEach(function() {
+      firmata.board = { sendOneWireDelay: spy() };
+      firmata.sendOneWireDelay(2, 5000);
+    });
+
+    it("calls #sendOneWireDelay on the board with the provided params",
+      function() {
+        expect(firmata.board.sendOneWireDelay).to.be.calledWith(2, 5000);
+      });
+  });
+
+  describe("#sendOneWireWriteAndRead", function() {
+    var data = [135, 1, 75, 70, 127, 255, 9, 16, 72],
+      callback;
+
+    beforeEach(function() {
+      callback = spy();
+
+      firmata.board = {
+        sendOneWireWriteAndRead: stub().callsArgWith(4, null, data)
+      };
+
+      firmata.sendOneWireWriteAndRead(2, [40, 234, 57, 176, 6, 0, 0, 207],
+        0xBE, 9, callback);
+    });
+
+    it("calls #sendOneWireWriteAndRead on the board", function() {
+      expect(firmata.board.sendOneWireWriteAndRead)
+        .to.be.calledWith(2, [40, 234, 57, 176, 6, 0, 0, 207], 0xBE, 9);
+      expect(callback).to.be.calledWith(null, data);
+    });
+  });
 });
