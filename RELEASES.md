@@ -1,6 +1,6 @@
 ## Release History
 
-Version 0.24.0 - Use Cylon 1.3.0, add sysexCommand/sysexResponse functions
+Version 0.24.0 - Use Cylon 1.3.0, add sysexCommand/sysexResponse and one-wire interfaces
 
 Version 0.23.0 - Use Cylon 1.2.0
 
