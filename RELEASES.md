@@ -1,5 +1,7 @@
 ## Release History
 
+Version 0.24.0 - Use Cylon 1.3.0, add sysexCommand/sysexResponse functions
+
 Version 0.23.0 - Use Cylon 1.2.0
 
 Version 0.22.0 - Use Cylon 1.1.0
@@ -14,7 +16,7 @@ Version 0.18.0 - Compatibility with Cylon 0.21.0
 
 Version 0.17.2 - Validate if cmd is an array in I2C requests.
 
-Version 0.17.1 - Fixes issue with I2C read not passimg the command as an array
+Version 0.17.1 - Fixes issue with I2C read not passing the command as an array
 
 Version 0.17.0 - Compatibility with Cylon 0.20.0
 
